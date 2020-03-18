@@ -5,21 +5,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonlogout;
+
+    UserSessionManager session;
     private static Context mCtx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         buttonlogout=findViewById(R.id.btnlogout);
+
+        session = new UserSessionManager(getApplicationContext());
+        TextView labelName = (TextView) findViewById(R.id.labelname);
+
+        Toast.makeText(getApplicationContext(),
+                "User Login Status: " + session.isUserLoggedIn(),
+                Toast.LENGTH_LONG).show();
+        if(session.checkLogin())
+            finish();
+        HashMap<String, String> user = session.getUserDetails();
+        String username = user.get(UserSessionManager.KEY_USERNAME);
+        labelName.setText(username);
+
 
         final TestDialog testDialog = new TestDialog();
         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -54,13 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
     public void logout(){
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
-
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        session.logoutUser();
     }
 }

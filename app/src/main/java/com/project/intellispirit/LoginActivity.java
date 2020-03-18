@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -36,6 +37,12 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 public class LoginActivity extends AppCompatActivity {
     EditText etName, etPassword;
 
+
+    UserSessionManager session;
+
+
+
+
     private Button buttonlogin;
     private ProgressDialog pDialog;
     @Override
@@ -43,12 +50,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        session = new UserSessionManager(getApplicationContext());
+
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etUserPassword);
         buttonlogin = findViewById(R.id.btnLogin);
 
+        Toast.makeText(getApplicationContext(),
+                "User Login Status: " + session.isUserLoggedIn(),
+                Toast.LENGTH_LONG).show();
 
 
 
@@ -66,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     private void userLogin() {
         final String username = etName.getText().toString().trim();
         final String password = etPassword.getText().toString().trim();
+
         //validating inputs
         if (TextUtils.isEmpty(username)) {
             etName.setError("Please enter your username");
@@ -78,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return;
         }
+
         pDialog.setMessage("Logging in ...");
         showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
@@ -109,9 +123,19 @@ public class LoginActivity extends AppCompatActivity {
                                 //starting the profile activity
                                 SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
 
+
+
+
                                 Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                                 startActivity(intent);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK |FLAG_ACTIVITY_CLEAR_TASK);
+
+
+
+
+                                session.createUserLoginSession(username,
+                                        password);
+
                                 finish();
 
                             } else {
