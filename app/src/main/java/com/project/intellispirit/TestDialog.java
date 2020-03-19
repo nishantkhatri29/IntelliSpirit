@@ -2,6 +2,7 @@ package com.project.intellispirit;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 public class TestDialog extends AppCompatDialogFragment {
     private EditText setPassword;
@@ -41,7 +44,7 @@ public class TestDialog extends AppCompatDialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_dialog, null);
+        final View view = inflater.inflate(R.layout.layout_dialog, null);
 
         builder.setView(view).setTitle("Set Password");
 
@@ -209,6 +212,7 @@ public class TestDialog extends AppCompatDialogFragment {
                 Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
                 getDialog().dismiss();
 
+
             }
         });
 
@@ -230,5 +234,9 @@ public class TestDialog extends AppCompatDialogFragment {
         if(!(setPassword.getText().toString().equals("") && newPassword.getText().toString().equals("")  && oldPassword.getText().toString().equals(""))){
             setPassButton.setEnabled(true);
         }
+    }
+
+    public interface DataPass {
+        public void DataPass(int flag);
     }
 }

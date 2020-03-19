@@ -35,12 +35,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.713"></Button>
 
-    <TextView
-        android:id="@+id/labelname"
+    <Button
+        android:id="@+id/updateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:hint="Name Comes Here"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="162dp"
+        android:text="Update Password"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

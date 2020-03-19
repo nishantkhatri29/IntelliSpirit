@@ -1,9 +1,11 @@
 package com.project.intellispirit;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
@@ -38,31 +40,26 @@ public class LoginActivity extends AppCompatActivity {
     EditText etName, etPassword;
 
 
-    UserSessionManager session;
-
-
-
 
     private Button buttonlogin;
     private ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        session = new UserSessionManager(getApplicationContext());
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        boolean logged = sharedPreferences.getBoolean("isLogIn", false);//true
+        if (logged) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etUserPassword);
         buttonlogin = findViewById(R.id.btnLogin);
-
-        Toast.makeText(getApplicationContext(),
-                "User Login Status: " + session.isUserLoggedIn(),
-                Toast.LENGTH_LONG).show();
-
-
 
 
         buttonlogin.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     private void userLogin() {
         final String username = etName.getText().toString().trim();
         final String password = etPassword.getText().toString().trim();
+
 
         //validating inputs
         if (TextUtils.isEmpty(username)) {
@@ -121,22 +119,60 @@ public class LoginActivity extends AppCompatActivity {
                                 //storing the user in shared preferences
 //                                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                                 //starting the profile activity
-                                SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
+                                //SaveSharedPreference.setLoggedIn(getApplicationContext(), true);
+
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putBoolean("isLogIn", true);
+                                editor.putString("Username",username);
+                                editor.commit();
+                                editor.apply();
 
 
 
 
-                                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK |FLAG_ACTIVITY_CLEAR_TASK);
+//                                final TestDialog testDialog = new TestDialog();
+//                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//
+//                                builder.setTitle("Do you want to change your password?")
+//                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                                testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                            }
+//                                        })
+//                                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+//                                                builder.setCancelable(true);
+//
+//                                            }
+//                                        });
+//                                AlertDialog dialog = builder.create();
+//                                dialog.show();
+
+                                int status=0;
+//                                int check=changePasswordDialog(status);
 
 
 
 
-                                session.createUserLoginSession(username,
-                                        password);
 
-                                finish();
+
+//                                if(check==1) {
+
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    finish();
+//                                }
+
+
+
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -152,8 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
-                })
-        {
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -165,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
 
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
@@ -174,8 +210,36 @@ public class LoginActivity extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-}
 
+    private int changePasswordDialog(int status){
+        if(status==0) {
+            final TestDialog testDialog = new TestDialog();
+            final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+            builder.setTitle("Do you want to change your password?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            testDialog.show(getSupportFragmentManager(), "test dialog");
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                            builder.setCancelable(true);
+
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            status=1;
+            return status;
+        }
+        return status;
+    }
+}
 
 
 //            RequestQueue requestQueue= Volley.newRequestQueue(LoginActivity.this);
