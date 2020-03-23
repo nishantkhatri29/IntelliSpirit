@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">IntelliSpirit</string>
+    <string-array name="UserTypes">
+        <item>Who are you?</item>
+        <item>A Student</item>
+        <item>A Teacher</item>
+        <item>A Principal</item>
+        <item>Admin</item>
+        <item>Super Admin</item>
+    </string-array>
 </resources>

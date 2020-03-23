@@ -13,8 +13,7 @@
         android:background="@color/white"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="number"
@@ -32,9 +31,8 @@
         android:id="@+id/etUserPassword"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
         android:background="@color/white"
-        android:layout_marginStart="8dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:hint="password"
         android:ems="10"
@@ -44,6 +42,19 @@
         android:textColorHint="@color/input_login_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserName" />
+
+    <Spinner
+        android:id="@+id/spinner_users"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginHorizontal="20dp"
+        android:entries="@array/UserTypes"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -57,7 +68,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUserPassword"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
+        app:layout_constraintVertical_bias="0.314"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

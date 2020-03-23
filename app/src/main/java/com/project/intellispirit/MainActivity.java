@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),password,Toast.LENGTH_LONG).show();
 
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATEPASSWORD,
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -156,5 +156,11 @@ public class MainActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }
