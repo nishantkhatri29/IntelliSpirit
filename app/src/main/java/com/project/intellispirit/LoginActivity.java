@@ -13,12 +13,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -38,6 +41,14 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName, etPassword;
+
+    //////////////////////////////////////
+    public static final String SHARED_PREFS = "alertDialogPrefs1";
+    public static final String TEXT= "dialogStatus1";
+    private ImageView show_hide_password;
+    final TestDialog testDialog = new TestDialog();
+
+    //////////////////////////////////////
 
     Spinner spinner;
     String usertype;
@@ -68,7 +79,10 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         if (admin_logged) {
             startActivity(new Intent(LoginActivity.this, Admin_Activity.class));
         }
+////////////////////////////////////////////////////////
+        show_hide_password = findViewById(R.id.show_hide_pass);
 
+        ////////////////////////////////////////////////////
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
@@ -76,6 +90,32 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         buttonlogin = findViewById(R.id.btnLogin);
         spinner=findViewById(R.id.spinner_users);
         spinner.setOnItemSelectedListener(this);
+
+        /////////////////////////////////////////////////////////////
+
+        show_hide_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v.getId()==R.id.show_hide_pass){
+
+                    if(etPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                        (( ImageView)(v)).setImageResource(R.drawable.ic_remove_red_eye_black_visible24dp);
+
+                        //Show Password
+                        etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    }
+                    else{
+                        ((ImageView)(v)).setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
+
+                        //Hide Password
+                        etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                    }
+                }
+            }
+        });
+
+        ///////////////////////////////////////////////////////////////
 
 
         buttonlogin.setOnClickListener(new View.OnClickListener() {
@@ -149,17 +189,69 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+//////////////////////////////////////////////////////////////////////////
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","admin");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    finish();
+                                }
+
+                                ////////////////////////////////////////////
 
 
 
 
 
-
-                                Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
-                                finish();
+//                                Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -221,16 +313,76 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.commit();
                                 editor.apply();
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","principal");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    finish();
+                                }
 
 
 
 
 
-                                Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
-                                finish();
+
+
+                                /////////////////////////////////////////////////////////////////////////
+
+
+
+
+//                                Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -292,17 +444,75 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+////////////////////////////////////////////////////////////////////////
+
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","teacher");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                                    finish();
+
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    finish();
+
+                                }
+
+
+
+                                ////////////////////////////////////////////////////////////////
 
 
 
 
 
-
-                                Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
-                                finish();
+//                                Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -365,17 +575,72 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+///////////////////////////////////////////////////////////////////////////////////////
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","student");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
 
 
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
 
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
 
-
+                                }
+                                else{
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
                                     finish();
+                                }
+
+
+                                ///////////////////////////////////////////////////////
+
+
+
+
+
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                    finish();
 
 
 
