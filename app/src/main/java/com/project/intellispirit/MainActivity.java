@@ -51,60 +51,60 @@ public class MainActivity extends AppCompatActivity {
         final String username=sharedPreferences.getString("Username","");
 
 
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String password = newPassword.getText().toString().trim();
-                Toast.makeText(getApplicationContext(),password,Toast.LENGTH_LONG).show();
-
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-
-                                try {
-                                    //converting response to json object
-                                    JSONObject obj = new JSONObject(response);
-
-                                    //if no error in response
-                                    if (!obj.getBoolean("error")) {
-                                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                                        //getting the user from the response
-                                        JSONObject userJson = obj.getJSONObject("user");
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("student_id", username);
-                        params.put("password",password);
-                        return params;
-                    }
-                };
-
-                VolleySingleton.getInstance(MainActivity.this).addToRequestQueue(stringRequest);
-                editor.putString("Password","Hello");
-                editor.commit();
-                editor.apply();
-
-
-            }
-        });
+//        updateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final String password = newPassword.getText().toString().trim();
+//                Toast.makeText(getApplicationContext(),password,Toast.LENGTH_LONG).show();
+//
+//
+//                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//
+//                                try {
+//                                    //converting response to json object
+//                                    JSONObject obj = new JSONObject(response);
+//
+//                                    //if no error in response
+//                                    if (!obj.getBoolean("error")) {
+//                                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+//
+//                                        //getting the user from the response
+//                                        JSONObject userJson = obj.getJSONObject("user");
+//                                    } else {
+//                                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        }) {
+//                    @Override
+//                    protected Map<String, String> getParams() throws AuthFailureError {
+//                        Map<String, String> params = new HashMap<>();
+//                        params.put("student_id", username);
+//                        params.put("password",password);
+//                        return params;
+//                    }
+//                };
+//
+//                VolleySingleton.getInstance(MainActivity.this).addToRequestQueue(stringRequest);
+//                editor.putString("Password","Hello");
+//                editor.commit();
+//                editor.apply();
+//
+//
+//            }
+//        });
 
 
 
@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
 
     }
 
