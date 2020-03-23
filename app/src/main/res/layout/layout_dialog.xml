@@ -4,34 +4,34 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/old_pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Old Password"
-        android:inputType="textPassword" />
+<!--    <EditText-->
+<!--        android:id="@+id/old_pass"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Old Password"-->
+<!--        android:inputType="textPassword" />-->
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/show_old_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/old_pass"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="-38dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/ic_remove_red_eye_black_24dp"
-        android:text="Show Password" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/show_old_pass"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/old_pass"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginTop="-38dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:src="@drawable/ic_remove_red_eye_black_24dp"-->
+<!--        android:text="Show Password" />-->
 
-    <TextView
-        android:layout_marginTop="8dp"
-        android:id="@+id/set_error1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please enter new password!"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_below="@id/old_pass"
-        />
+<!--    <TextView-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:id="@+id/set_error1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Please enter new password!"-->
+<!--        android:textColor="@android:color/holo_red_light"-->
+<!--        android:layout_below="@id/old_pass"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/new_pass"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:hint="New Password"
         android:inputType="textPassword"
-        android:layout_below="@id/set_error1"/>
+        />
 
 
     <androidx.appcompat.widget.AppCompatImageView
