@@ -55,12 +55,8 @@ public class TestDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-//////////////////////////////////////////////////
         Bundle bundle = getArguments();
         final String status =bundle.getString("status","");
-
-        /////////////////////////////////////////
-
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -69,41 +65,14 @@ public class TestDialog extends AppCompatDialogFragment {
 
         builder.setView(view).setTitle("Set Password");
 
-//        builder.setCancelable(false);
 
         setPassword = view.findViewById(R.id.set_pass);
-        //oldPassword = view.findViewById(R.id.old_pass);
         newPassword = view.findViewById(R.id.new_pass);
-        //   showPassword = view.findViewById(R.id.show_pass);
         setError = view.findViewById(R.id.set_error);
-        //  setOldError = view.findViewById(R.id.set_error1);
         setNewError = view.findViewById(R.id.set_error2);
         showPassword = view.findViewById(R.id.show_pass);
-        // showOldPassword = view.findViewById(R.id.show_old_pass);
         showNewPassword = view.findViewById(R.id.show_new_pass);
 
-
-//        showOldPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(v.getId()==R.id.show_old_pass){
-//
-//                    if(oldPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-//                        (( ImageView)(v)).setImageResource(R.drawable.ic_remove_red_eye_black_visible24dp);
-//
-//                        //Show Password
-//                        oldPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//                    }
-//                    else{
-//                        ((ImageView)(v)).setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
-//
-//                        //Hide Password
-//                        oldPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//
-//                    }
-//                }
-//            }
-//        });
 
 
         showNewPassword.setOnClickListener(new View.OnClickListener() {
@@ -153,28 +122,6 @@ public class TestDialog extends AppCompatDialogFragment {
 
         setPassButton = view.findViewById(R.id.set_pass_button);
 
-//        oldPassword.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if (s.toString().equals("")) {
-//                    setOldError.setVisibility(View.VISIBLE);
-//                    setPassButton.setEnabled(false);
-//                } else {
-//                    setOldError.setVisibility(View.GONE);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
 
         newPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -189,7 +136,7 @@ public class TestDialog extends AppCompatDialogFragment {
                     setPassButton.setEnabled(false);
                 } else {
                     setNewError.setVisibility(View.GONE);
-//                    setPassButton.setEnabled(true);
+
                 }
             }
 
@@ -218,7 +165,7 @@ public class TestDialog extends AppCompatDialogFragment {
                 }
                 else {
                     setError.setVisibility(View.GONE);
-//                    setPassButton.setEnabled(true);
+
                     enableButton();
                 }
             }
@@ -232,13 +179,7 @@ public class TestDialog extends AppCompatDialogFragment {
         setPassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SharedPreferences preferences = getActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putBoolean("firstTime", false);
-//                editor.apply();
-//                getDialog().dismiss();
-//                Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
-                ///////////////////////////////////////////////////////////////////////////////
+
                 if (status == "student") {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LogIn", MODE_PRIVATE);
                     final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -295,14 +236,9 @@ public class TestDialog extends AppCompatDialogFragment {
                     editor.commit();
                     editor.apply();
 
-//              ///////////////////////////////////////////////////////////////////////////////
 
-//                try{}
                     dismiss();
 
-//                flag=true;
-////                setCancelable(true);
-//                listener.finishActivityAlert(flag);
 
                     Intent intent = new Intent((LoginActivity) getActivity(), MainActivity.class);
                     Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
@@ -310,15 +246,6 @@ public class TestDialog extends AppCompatDialogFragment {
                     startActivity(intent,bundle);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
-//                dismiss();
-
-//                catch (Exception e){
-//
-//                   Log.e("ERROR",String.valueOf(e)) ;
-//                }
-
-//                getDialog().dismiss();
-//                getActivity().finish();
 
 
                 }
@@ -380,14 +307,8 @@ public class TestDialog extends AppCompatDialogFragment {
                     editor.commit();
                     editor.apply();
 
-//              ///////////////////////////////////////////////////////////////////////////////
-
-//                try{}
                     dismiss();
 
-//                flag=true;
-////                setCancelable(true);
-//                listener.finishActivityAlert(flag);
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Admin_Activity.class);
                     Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
@@ -453,9 +374,6 @@ public class TestDialog extends AppCompatDialogFragment {
                     editor.commit();
                     editor.apply();
 
-//              ///////////////////////////////////////////////////////////////////////////////
-
-//                try{}
                     dismiss();
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Teacher_Activity.class);
@@ -522,9 +440,6 @@ public class TestDialog extends AppCompatDialogFragment {
                     editor.commit();
                     editor.apply();
 
-//              ///////////////////////////////////////////////////////////////////////////////
-
-//                try{}
                     dismiss();
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Principal_Activity.class);
@@ -534,13 +449,6 @@ public class TestDialog extends AppCompatDialogFragment {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
                 }
-
-
-
-
-
-
-
 
             }
         });
@@ -569,14 +477,5 @@ public class TestDialog extends AppCompatDialogFragment {
         public void DataPass(int flag);
     }
 
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//
-//        try {
-//            listener = (TestDialogListener) context;
-//        } catch (ClassCastException e) {
-//            throw  new ClassCastException(context.toString() + "must implement TestDialogListener");
-//        }
-//    }
+
 }

@@ -131,16 +131,16 @@
         app:layout_constraintEnd_toEndOf="@+id/etUserPassword" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/show_hide_pass"
-        android:layout_width="40dp"
-        android:layout_height="38dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_remove_red_eye_black_24dp"
-        android:text="Show Password"
-        app:layout_constraintBottom_toBottomOf="@+id/etUserPassword"
-        app:layout_constraintEnd_toEndOf="@+id/etUserPassword" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/show_hide_pass"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="38dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:src="@drawable/ic_remove_red_eye_black_24dp"-->
+<!--        android:text="Show Password"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/etUserPassword"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/etUserPassword" />-->
     <Spinner
         android:id="@+id/spinner_users"
         android:layout_width="wrap_content"
@@ -157,17 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
         app:layout_constraintVertical_bias="0.0" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/forgot_password_textview"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Forgot Password?"-->
-<!--        android:textColor="#000"-->
-<!--        android:layout_marginTop="48dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/spinner_users" />-->
+
 
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/btnLogin"

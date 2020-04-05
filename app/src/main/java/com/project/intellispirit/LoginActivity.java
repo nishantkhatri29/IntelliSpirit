@@ -38,14 +38,11 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName, etPassword, etDOB;
 
-    //////////////////////////////////////
     public static final String SHARED_PREFS = "alertDialogPrefs1";
     public static final String TEXT= "dialogStatus1";
     private ImageView show_hide_password;
     final TestDialog testDialog = new TestDialog();
 
-
-    //////////////////////////////////////
 
     Spinner spinner;
     String usertype;
@@ -80,10 +77,10 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         if (admin_logged) {
             startActivity(new Intent(LoginActivity.this, Admin_Activity.class));
         }
-////////////////////////////////////////////////////////
+
         show_hide_password = findViewById(R.id.show_hide_pass);
 
-        ////////////////////////////////////////////////////
+
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
@@ -94,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         spinner.setOnItemSelectedListener(this);
 
 
-        /////////////////////////////////////////////////////////////
+
 
         show_hide_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +114,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-        ///////////////////////////////////////////////////////////////
 
         buttonlogin.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
@@ -194,7 +190,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
-//////////////////////////////////////////////////////////////////////////
+
                                 testDialog.setCancelable(false);
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
@@ -211,8 +207,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     bundle.putString("status","admin");
                                                     testDialog.setArguments(bundle);
                                                     testDialog.show(getSupportFragmentManager(), "test dialog");
-//                                                    testDialog.dismiss();
-//                                                    testDialog.setCancelable(true);
+
 
 
                                                 }
@@ -246,21 +241,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                                     finish();
                                 }
-
-                                ////////////////////////////////////////////
-
-
-
-
-
-//                                Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
-//                                startActivity(intent);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                                finish();
-
-
-
 
 
                             } else {
@@ -321,7 +301,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.commit();
                                 editor.apply();
 
-//////////////////////////////////////////////////////////////////////////////////////////
 
                                 testDialog.setCancelable(false);
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -373,27 +352,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                                     finish();
                                 }
-
-
-
-
-
-
-
-
-                                /////////////////////////////////////////////////////////////////////////
-
-
-
-
-//                                Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
-//                                startActivity(intent);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                                finish();
-
-
-
 
 
                             } else {
@@ -454,7 +412,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
-////////////////////////////////////////////////////////////////////////
 
 
                                 testDialog.setCancelable(false);
@@ -509,23 +466,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     finish();
 
                                 }
-
-
-
-                                ////////////////////////////////////////////////////////////////
-
-
-
-
-
-//                                Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
-//                                startActivity(intent);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                                finish();
-
-
-
 
 
                             } else {
@@ -587,7 +527,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
-///////////////////////////////////////////////////////////////////////////////////////
 
                                 testDialog.setCancelable(false);
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -606,8 +545,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     bundle.putString("status","student");
                                                     testDialog.setArguments(bundle);
                                                     testDialog.show(getSupportFragmentManager(), "test dialog");
-//                                                    testDialog.dismiss();
-//                                                    testDialog.setCancelable(true);
 
 
                                                 }
@@ -640,22 +577,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                                     finish();
                                 }
-
-
-                                ///////////////////////////////////////////////////////
-
-
-
-
-
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    startActivity(intent);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-//
-//                                    finish();
-
-
-
 
 
                             } else {
@@ -708,9 +629,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
-
 
 }
 
