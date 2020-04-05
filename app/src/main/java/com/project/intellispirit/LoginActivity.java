@@ -1,32 +1,31 @@
 package com.project.intellispirit;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.nfc.Tag;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,19 +36,32 @@ import java.util.Map;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText etName, etPassword;
+    EditText etName, etPassword, etDOB;
+
+    //////////////////////////////////////
+    public static final String SHARED_PREFS = "alertDialogPrefs1";
+    public static final String TEXT= "dialogStatus1";
+    private ImageView show_hide_password;
+    final TestDialog testDialog = new TestDialog();
+
+
+    //////////////////////////////////////
 
     Spinner spinner;
     String usertype;
-    private Button buttonlogin;
+    private SwipeButton buttonlogin;
     private ProgressDialog pDialog;
     private String username;
     private String password;
+    private String DOB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //   getSupportActionBar().hide();
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
         boolean student_logged = sharedPreferences.getBoolean("isStudentLogIn", false);//true
@@ -60,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
         if (teacher_logged) {
-            startActivity(new Intent(LoginActivity.this,Teacher_Activity.class));
+            startActivity(new Intent(LoginActivity.this, Teacher_Activity.class));
         }
         if (principal_logged) {
             startActivity(new Intent(LoginActivity.this, Principal_Activity.class));
@@ -68,26 +80,61 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         if (admin_logged) {
             startActivity(new Intent(LoginActivity.this, Admin_Activity.class));
         }
+////////////////////////////////////////////////////////
+        show_hide_password = findViewById(R.id.show_hide_pass);
 
+        ////////////////////////////////////////////////////
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
+        etDOB = findViewById(R.id.etUserDOB);
         etPassword = findViewById(R.id.etUserPassword);
         buttonlogin = findViewById(R.id.btnLogin);
-        spinner=findViewById(R.id.spinner_users);
+        spinner = findViewById(R.id.spinner_users);
         spinner.setOnItemSelectedListener(this);
 
 
-        buttonlogin.setOnClickListener(new View.OnClickListener() {
+        /////////////////////////////////////////////////////////////
+
+        show_hide_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 username = etName.getText().toString().trim();
-                 password = etPassword.getText().toString().trim();
+                if (v.getId() == R.id.show_hide_pass) {
+
+                    if (etPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                        ((ImageView) (v)).setImageResource(R.drawable.ic_remove_red_eye_black_visible24dp);
+
+                        //Show Password
+                        etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    } else {
+                        ((ImageView) (v)).setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
+
+                        //Hide Password
+                        etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                    }
+                }
+            }
+        });
+
+        ///////////////////////////////////////////////////////////////
+
+        buttonlogin.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                username = etName.getText().toString().trim();
+                DOB=etDOB.getText().toString().trim();
+                password = etPassword.getText().toString().trim();
 
 
                 if (TextUtils.isEmpty(username)) {
                     etName.setError("Please enter your username");
                     etName.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(DOB)){
+                    etDOB.setError("Please enter DOB");
+                    etDOB.requestFocus();
                     return;
                 }
 
@@ -104,8 +151,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         studentLogin();
                         break;
                     case "A Teacher":
-                       teacherlogin();
-                       break;
+                        teacherlogin();
+                        break;
                     case "A Principal":
                         principallogin();
                         break;
@@ -117,11 +164,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         break;
                 }
             }
-
-
         });
     }
-
     private void adminlogin() {
 
         pDialog.setMessage("Logging in ...");
@@ -146,20 +190,74 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isAdminLogIn", true);
                                 editor.putString("Username",username);
+                                editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+//////////////////////////////////////////////////////////////////////////
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","admin");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                    finish();
+                                }
+
+                                ////////////////////////////////////////////
 
 
 
 
 
-
-                                Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
-                                finish();
+//                                Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -184,6 +282,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("admin_id", username);
+                params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
             }
@@ -217,20 +316,81 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isPrincipalLogIn", true);
                                 editor.putString("Username",username);
+                                editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","principal");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                    finish();
+                                }
 
 
 
 
 
-                                Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
-                                finish();
+
+
+                                /////////////////////////////////////////////////////////////////////////
+
+
+
+
+//                                Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -255,6 +415,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("principal_id", username);
+                params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
             }
@@ -289,20 +450,79 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isTeacherLogIn", true);
                                 editor.putString("Username",username);
+                                editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+////////////////////////////////////////////////////////////////////////
+
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","teacher");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
+
+
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                                    finish();
+
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
+
+                                }
+                                else{
+                                    Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+                                    startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                    finish();
+
+                                }
+
+
+
+                                ////////////////////////////////////////////////////////////////
 
 
 
 
 
-
-                                Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
-                                startActivity(intent);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
-                                finish();
+//                                Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
+//                                startActivity(intent);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                finish();
 
 
 
@@ -327,6 +547,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("teacher_id", username);
+                params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
             }
@@ -362,20 +583,76 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isStudentLogIn", true);
                                 editor.putString("Username",username);
+                                editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
                                 editor.commit();
                                 editor.apply();
+///////////////////////////////////////////////////////////////////////////////////////
+
+                                testDialog.setCancelable(false);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                                SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                boolean firstStart = dialogPreferences1.getBoolean(TEXT, true);
+
+                                if(firstStart) {
+                                    builder.setTitle("Do you want to set your password?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putString("status","student");
+                                                    testDialog.setArguments(bundle);
+                                                    testDialog.show(getSupportFragmentManager(), "test dialog");
+//                                                    testDialog.dismiss();
+//                                                    testDialog.setCancelable(true);
 
 
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Toast.makeText(LoginActivity.this, "No", Toast.LENGTH_SHORT).show();
+                                                    builder.setCancelable(true);
+                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    startActivity(intent);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                                                    finish();
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
 
+                                    SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
+                                    dialogEditor1.putBoolean(TEXT, false);
+                                    dialogEditor1.apply();
+//                                     finishActivityAlert();
 
-
-
+                                }
+                                else{
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
+                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                                     finish();
+                                }
+
+
+                                ///////////////////////////////////////////////////////
+
+
+
+
+
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                    finish();
 
 
 
@@ -400,6 +677,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("student_id", username);
+                params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
             }
@@ -430,6 +708,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 
 
 }
