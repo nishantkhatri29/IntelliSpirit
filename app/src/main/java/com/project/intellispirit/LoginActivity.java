@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         etName = findViewById(R.id.etUserName);
-        etDOB = findViewById(R.id.etUserDOB);
+        etDOB =findViewById(R.id.etUserDOB);
         etPassword = findViewById(R.id.etUserPassword);
         buttonlogin = findViewById(R.id.btnLogin);
         spinner = findViewById(R.id.spinner_users);
