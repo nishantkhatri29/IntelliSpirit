@@ -241,9 +241,10 @@ public class TestDialog extends AppCompatDialogFragment {
 
 
                     Intent intent = new Intent((LoginActivity) getActivity(), MainActivity.class);
-                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
+                    //Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
 
-                    startActivity(intent,bundle);
+                    //startActivity(intent,bundle);
+                    startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
 
@@ -311,9 +312,10 @@ public class TestDialog extends AppCompatDialogFragment {
 
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Admin_Activity.class);
-                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
-
-                    startActivity(intent,bundle);
+//                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
+//
+//                    startActivity(intent,bundle);
+                    startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
                 }
@@ -377,9 +379,10 @@ public class TestDialog extends AppCompatDialogFragment {
                     dismiss();
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Teacher_Activity.class);
-                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
-
-                    startActivity(intent,bundle);
+//                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
+//
+//                    startActivity(intent,bundle);
+                    startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
                 }
@@ -443,9 +446,10 @@ public class TestDialog extends AppCompatDialogFragment {
                     dismiss();
 
                     Intent intent = new Intent((LoginActivity) getActivity(), Principal_Activity.class);
-                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
-
-                    startActivity(intent,bundle);
+//                    Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
+//
+//                    startActivity(intent,bundle);
+                    startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
 
                 }
