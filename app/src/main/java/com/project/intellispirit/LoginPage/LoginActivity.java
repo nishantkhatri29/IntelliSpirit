@@ -526,12 +526,24 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 //getting the user from the response
                                 JSONObject userJson = obj.getJSONObject("user");
 
+
+
                                 SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isStudentLogIn", true);
                                 editor.putString("Username",username);
                                 editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
+
+                                String UserName=userJson.getString("name");
+                                String UserClass = userJson.getString("class");
+                                String UserSection=userJson.getString("section");
+                                String UserSchool=userJson.getString("school");
+                                editor.putString("Name",UserName);
+                                editor.putString("Class",UserClass);
+                                editor.putString("Section",UserSection);
+                                editor.putString("School",UserSchool);
+
                                 editor.commit();
                                 editor.apply();
 

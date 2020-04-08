@@ -39,14 +39,14 @@
                 android:fontFamily="@font/poppinsregular"
                 android:text="Name:"
                 android:textSize="24dp"></TextView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_studentname"
+                android:layout_width="241dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/tv_studentname"
-                android:textColor="@color/ligthblack"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="nameofstudent"
+                android:textColor="@color/ligthblack"
                 android:textSize="26dp"></TextView>
 
         </LinearLayout>
@@ -71,14 +71,14 @@
                 android:textColor="@color/darkgrey"
                 android:fontFamily="@font/poppinsregular"
                 android:textSize="24dp"></TextView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_studentschool"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/ligthblack"
-                android:id="@+id/tv_studentschool"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="nameofschool"
+                android:textColor="@color/ligthblack"
                 android:textSize="26dp"></TextView>
 
         </LinearLayout>
@@ -103,12 +103,12 @@
                 android:fontFamily="@font/poppinsregular"
                 android:textColor="@color/darkgrey"
                 android:textSize="24dp"></TextView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_studentclass"
+                android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/tv_studentclass"
-                android:text="classofstudent"
                 android:fontFamily="@font/poppinssemibold"
                 android:textColor="@color/ligthblack"
                 android:textSize="26dp"></TextView>
@@ -135,14 +135,14 @@
                 android:textColor="@color/darkgrey"
                 android:fontFamily="@font/poppinsregular"
                 android:textSize="24dp"></TextView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_studentsection"
+                android:layout_width="242dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/ligthblack"
-                android:id="@+id/tv_studentsection"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="sectionofstudent"
+                android:textColor="@color/ligthblack"
                 android:textSize="26dp"></TextView>
 
         </LinearLayout>
@@ -168,14 +168,14 @@
                 android:textColor="@color/darkgrey"
                 android:fontFamily="@font/poppinsregular"
                 android:textSize="24dp"></TextView>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_studentDOB"
+                android:layout_width="284dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/tv_studentDOB"
-                android:text="DOBofstudent"
-                android:textColor="@color/ligthblack"
                 android:fontFamily="@font/poppinssemibold"
+                android:textColor="@color/ligthblack"
                 android:textSize="26dp"></TextView>
 
         </LinearLayout>
