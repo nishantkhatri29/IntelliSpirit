@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.LoginPage;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -10,7 +10,6 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -26,6 +25,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
+import com.project.intellispirit.Apis.URLs;
+import com.project.intellispirit.R;
+import com.project.intellispirit.Adapters.TestDialog;
+import com.project.intellispirit.UserHomePages.Admin_Activity;
+import com.project.intellispirit.UserHomePages.MainActivity;
+import com.project.intellispirit.UserHomePages.Principal_Activity;
+import com.project.intellispirit.UserHomePages.Teacher_Activity;
+import com.project.intellispirit.Volley.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;

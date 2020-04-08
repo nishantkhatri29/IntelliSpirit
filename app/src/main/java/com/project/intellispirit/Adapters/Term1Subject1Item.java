@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.Adapters;
 
 public class Term1Subject1Item {
     private int mImageResource;

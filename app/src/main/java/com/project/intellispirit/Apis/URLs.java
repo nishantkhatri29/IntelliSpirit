@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.Apis;
 
 public class URLs {
     public static final String URL_STUDENTLOGIN= "https://intellispiritapp.000webhostapp.com/api.php?apicall=student_login";

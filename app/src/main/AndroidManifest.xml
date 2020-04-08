@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Profile_Student"></activity>
-        <activity android:name=".Principal_Activity" />
-        <activity android:name=".Admin_Activity" />
-        <activity android:name=".Teacher_Activity" />
+        <activity android:name=".UserProfilePages.Profile_Student"></activity>
+        <activity android:name=".UserHomePages.Principal_Activity" />
+        <activity android:name=".UserHomePages.Admin_Activity" />
+        <activity android:name=".UserHomePages.Teacher_Activity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoginPage.LoginActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -27,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".TermSubjectActivity" />
+        <activity android:name=".UserHomePages.MainActivity" />
+        <activity android:name=".Adapters.TermSubjectActivity" />
     </application>
 
 </manifest>

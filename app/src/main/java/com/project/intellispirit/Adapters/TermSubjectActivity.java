@@ -1,9 +1,11 @@
-package com.project.intellispirit;
+package com.project.intellispirit.Adapters;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.project.intellispirit.R;
 
 public class TermSubjectActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;

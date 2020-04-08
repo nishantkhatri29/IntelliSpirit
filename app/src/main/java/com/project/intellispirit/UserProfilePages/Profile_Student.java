@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.UserProfilePages;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.project.intellispirit.R;
+import com.project.intellispirit.UserHomePages.MainActivity;
 
 public class Profile_Student extends AppCompatActivity {
     Toolbar toolbar;

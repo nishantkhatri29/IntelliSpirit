@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Principal_Activity">
+    tools:context=".UserHomePages.Principal_Activity">
     <include
         layout="@layout/toolbar"
         android:id="@+id/principal_tool"

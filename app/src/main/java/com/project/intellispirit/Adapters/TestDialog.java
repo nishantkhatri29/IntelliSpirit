@@ -1,6 +1,5 @@
-package com.project.intellispirit;
+package com.project.intellispirit.Adapters;
 
-import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +26,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.project.intellispirit.Apis.URLs;
+import com.project.intellispirit.LoginPage.LoginActivity;
+import com.project.intellispirit.R;
+import com.project.intellispirit.UserHomePages.Admin_Activity;
+import com.project.intellispirit.UserHomePages.MainActivity;
+import com.project.intellispirit.UserHomePages.Principal_Activity;
+import com.project.intellispirit.UserHomePages.Teacher_Activity;
+import com.project.intellispirit.Volley.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;

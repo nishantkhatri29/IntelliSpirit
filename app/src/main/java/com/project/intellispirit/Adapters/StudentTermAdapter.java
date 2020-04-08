@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.project.intellispirit.R;
 
 import java.util.ArrayList;
 

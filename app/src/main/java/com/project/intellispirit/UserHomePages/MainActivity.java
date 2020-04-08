@@ -1,4 +1,4 @@
-package com.project.intellispirit;
+package com.project.intellispirit.UserHomePages;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.project.intellispirit.LoginPage.LoginActivity;
+import com.project.intellispirit.UserProfilePages.Profile_Student;
+import com.project.intellispirit.R;
+import com.project.intellispirit.Adapters.StudentTerm;
+import com.project.intellispirit.Adapters.StudentTermAdapter;
+import com.project.intellispirit.Adapters.TermSubjectActivity;
 
 import java.util.ArrayList;
 
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         imageView_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Profile_Student.class));
+                startActivity(new Intent(MainActivity.this, Profile_Student.class));
             }
         });
 
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, itemList.get(position).getmText(), Toast.LENGTH_SHORT).show();
 
                 if(position==0){
-                    Intent intent = new Intent(getApplicationContext(),TermSubjectActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), TermSubjectActivity.class);
                     intent.putExtra("position",String.valueOf(position));
                     startActivity(intent);
                 }
