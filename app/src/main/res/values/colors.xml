@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#a4cd3b</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#383838</color>
     <color name="colorAccent">#25aae1</color>
     <color name="bg_login">#26ae90</color>
     <color name="black">#000</color>
@@ -19,5 +19,6 @@
     <color name="btn_logut_bg">#ff6861</color>
     <color name="darkgrey">#5E5E5E</color>
     <color name="ligthblack">#2E2E2E</color>
+    <color name="splashbackground">#383838</color>
 
 </resources>

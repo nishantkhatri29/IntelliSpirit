@@ -7,13 +7,21 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/intellispiritlogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/intellispiritlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UserProfilePages.Profile_Student"></activity>
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserProfilePages.Profile_Student" />
         <activity android:name=".UserHomePages.Principal_Activity" />
         <activity android:name=".UserHomePages.Admin_Activity" />
         <activity android:name=".UserHomePages.Teacher_Activity" />
@@ -21,11 +29,7 @@
             android:name=".LoginPage.LoginActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".UserHomePages.MainActivity" />
         <activity android:name=".Adapters.TermSubjectActivity" />
