@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<StudentTerm> itemList = new ArrayList<>();
         itemList.add(new StudentTerm(R.drawable.term_one, "Term 1"));
         itemList.add(new StudentTerm(R.drawable.term_two, "Term 2"));
+        itemList.add(new StudentTerm(R.drawable.term_three, "Term 3"));
+        itemList.add(new StudentTerm(R.drawable.term_four, "Term 4"));
+
+
 
         toolbar = findViewById(R.id.mytool);
         setSupportActionBar(toolbar);
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new StudentTermAdapter(itemList);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new StudentTermAdapter.OnItemClickListener() {

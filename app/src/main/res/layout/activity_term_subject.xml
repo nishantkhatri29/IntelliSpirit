@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Adapters.TermSubjectActivity"
-    android:background="@android:color/darker_gray">
+    android:background="@color/input_login_hint">
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/student_subject_recyclerview"-->
@@ -15,7 +15,11 @@
 <!--        android:scrollbars="vertical"-->
 <!--        android:background="@android:color/darker_gray"-->
 <!--        />-->
-
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/main_tool"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"></include>
     <FrameLayout
         android:id="@+id/nav_host_fragment"
         android:layout_width="355dp"
