@@ -16,7 +16,7 @@
 <!--        android:background="@android:color/darker_gray"-->
 <!--        />-->
     <include
-        layout="@layout/toolbar"
+        layout="@layout/other_toolbar"
         android:id="@+id/main_tool"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"></include>
