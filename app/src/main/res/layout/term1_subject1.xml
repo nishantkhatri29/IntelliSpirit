@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="110dp"
-    android:layout_height="160dp"
+    android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
-    android:elevation="8dp"
+    app:cardElevation="0dp"
     android:layout_marginLeft="2dp"
     android:layout_marginBottom="16dp"
     >
@@ -12,15 +12,16 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:gravity="center_horizontal"
         android:layout_height="match_parent"
         >
 
-          <ImageView
+        <ImageView
             android:id="@+id/test_subject_image"
-            android:layout_width="match_parent"
-            android:layout_height="115dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="5dp"
             android:scaleType="fitCenter"
-            android:background="@color/input_login_hint"
             android:src="@drawable/book"
             />
 
@@ -31,7 +32,7 @@
             android:layout_height="match_parent"
             android:text="Line 1"
             android:textColor="#2d2d2d"
-            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold"
             android:gravity="center"/>
 

@@ -8,7 +8,7 @@
         android:id="@+id/term1_subject1_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/input_login_hint"
+
         android:padding="4dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
