@@ -24,9 +24,6 @@ import com.project.intellispirit.Adapters.TermSubjectActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-//    private Button buttonlogout;
-//    public Button updateButton;
-//    public EditText newPassword;
 
     Toolbar toolbar;
     ImageView imageView_profile;
@@ -53,10 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.mytool);
         setSupportActionBar(toolbar);
-//        buttonlogout = findViewById(R.id.btnlogout);
-//        updateButton= findViewById(R.id.updateBtn);
-//
-//        newPassword=findViewById(R.id.newPass);
+
         imageView_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
