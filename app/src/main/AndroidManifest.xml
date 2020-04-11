@@ -13,12 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".UserProfilePages.Profile_Principal"></activity>
+        <activity android:name=".UserProfilePages.Profile_Admin" />
+        <activity android:name=".UserProfilePages.Profile_Teacher" />
         <activity android:name=".SplashScreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity android:name=".UserProfilePages.Profile_Student" />
@@ -28,9 +30,7 @@
         <activity
             android:name=".LoginPage.LoginActivity"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".UserHomePages.MainActivity" />
         <activity android:name=".Adapters.TermSubjectActivity" />
     </application>
