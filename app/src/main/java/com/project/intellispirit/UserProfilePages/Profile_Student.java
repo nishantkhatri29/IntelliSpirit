@@ -34,11 +34,11 @@ TextView textViewtool;
          imageView_profile.setVisibility(View.INVISIBLE);
         toolbar=findViewById(R.id.mytool);
 
-        Name=findViewById(R.id.tv_studentname);
-        School=findViewById(R.id.tv_studentschool);
-        ClassTV=findViewById(R.id.tv_studentclass);
-        Section=findViewById(R.id.tv_studentsection);
-        DOBTV=findViewById(R.id.tv_studentDOB);
+        Name=findViewById(R.id.tv_name);
+        School=findViewById(R.id.tv_school);
+        ClassTV=findViewById(R.id.tv_class);
+        Section=findViewById(R.id.tv_section);
+        DOBTV=findViewById(R.id.tv_DOB);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
