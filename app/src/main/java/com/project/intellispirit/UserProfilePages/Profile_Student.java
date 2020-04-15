@@ -18,11 +18,11 @@ public class Profile_Student extends AppCompatActivity {
 ImageView imageView_profile;
 TextView textViewtool;
 
-    TextView Name;
-    TextView School;
-    TextView ClassTV;
-    TextView Section;
-    TextView DOBTV;
+    TextView name_student;
+    TextView school_student;
+    TextView class_student;
+    TextView section_student;
+    TextView DOB_student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,11 @@ TextView textViewtool;
          imageView_profile.setVisibility(View.INVISIBLE);
         toolbar=findViewById(R.id.mytool);
 
-        Name=findViewById(R.id.tv_name);
-        School=findViewById(R.id.tv_school);
-        ClassTV=findViewById(R.id.tv_class);
-        Section=findViewById(R.id.tv_section);
-        DOBTV=findViewById(R.id.tv_DOB);
+        name_student=findViewById(R.id.tv_name);
+        school_student=findViewById(R.id.tv_school);
+        class_student=findViewById(R.id.tv_class);
+        section_student=findViewById(R.id.tv_section);
+        DOB_student=findViewById(R.id.tv_DOB);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,16 +51,16 @@ TextView textViewtool;
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
 
-        String name=sharedPreferences.getString("Name","");
-        String Class=sharedPreferences.getString("Class","");
-        String section=sharedPreferences.getString("Section","");
-        String school=sharedPreferences.getString("School","");
+        String name=sharedPreferences.getString("name","");
+        String Class=sharedPreferences.getString("class","");
+        String section=sharedPreferences.getString("section","");
+        String school=sharedPreferences.getString("school","");
         String DOB=sharedPreferences.getString("DOB","");
-        Name.setText(name);
-        School.setText(school);
-        ClassTV.setText(Class);
-        Section.setText(section);
-        DOBTV.setText(DOB);
+        name_student.setText(name);
+        school_student.setText(school);
+        class_student.setText(Class);
+        section_student.setText(section);
+        DOB_student.setText(DOB);
 
     }
 }

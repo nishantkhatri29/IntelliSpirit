@@ -204,15 +204,12 @@ public class TestDialog extends AppCompatDialogFragment {
                                 public void onResponse(String response) {
 
                                     try {
-                                        //converting response to json object
-                                        JSONObject obj = new JSONObject(response);
+            JSONObject obj = new JSONObject(response);
 
-                                        //if no error in response
-                                        if (!obj.getBoolean("error")) {
+            if (!obj.getBoolean("error")) {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                            //getting the user from the response
-                                            JSONObject userJson = obj.getJSONObject("user");
+            JSONObject userJson = obj.getJSONObject("user");
                                         } else {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                         }
@@ -276,15 +273,12 @@ public class TestDialog extends AppCompatDialogFragment {
                                 public void onResponse(String response) {
 
                                     try {
-                                        //converting response to json object
-                                        JSONObject obj = new JSONObject(response);
+            JSONObject obj = new JSONObject(response);
 
-                                        //if no error in response
-                                        if (!obj.getBoolean("error")) {
+            if (!obj.getBoolean("error")) {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                            //getting the user from the response
-                                            JSONObject userJson = obj.getJSONObject("user");
+            JSONObject userJson = obj.getJSONObject("user");
                                         } else {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                         }
@@ -344,15 +338,12 @@ public class TestDialog extends AppCompatDialogFragment {
                                 public void onResponse(String response) {
 
                                     try {
-                                        //converting response to json object
-                                        JSONObject obj = new JSONObject(response);
+            JSONObject obj = new JSONObject(response);
 
-                                        //if no error in response
-                                        if (!obj.getBoolean("error")) {
+            if (!obj.getBoolean("error")) {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                            //getting the user from the response
-                                            JSONObject userJson = obj.getJSONObject("user");
+            JSONObject userJson = obj.getJSONObject("user");
                                         } else {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                         }
@@ -411,15 +402,12 @@ public class TestDialog extends AppCompatDialogFragment {
                                 public void onResponse(String response) {
 
                                     try {
-                                        //converting response to json object
-                                        JSONObject obj = new JSONObject(response);
+            JSONObject obj = new JSONObject(response);
 
-                                        //if no error in response
-                                        if (!obj.getBoolean("error")) {
+            if (!obj.getBoolean("error")) {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                            //getting the user from the response
-                                            JSONObject userJson = obj.getJSONObject("user");
+            JSONObject userJson = obj.getJSONObject("user");
                                         } else {
                                             Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                         }

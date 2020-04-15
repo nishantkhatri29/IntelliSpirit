@@ -179,15 +179,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     public void onResponse(String response) {
                         hideDialog();
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
+JSONObject obj = new JSONObject(response);
 
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
+if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
+JSONObject userJson = obj.getJSONObject("user");
 
                                 SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -227,7 +224,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
                                                     startActivity(intent);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
 
                                                     finish();
                                                 }
@@ -238,14 +235,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
                                     dialogEditor1.putBoolean(TEXT, false);
                                     dialogEditor1.apply();
-//                                     finishActivityAlert();
+
 
                                 }
                                 else{
                                     Intent intent = new Intent(LoginActivity.this, Admin_Activity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                     finish();
                                 }
 
@@ -289,15 +286,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     public void onResponse(String response) {
                         hideDialog();
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
+JSONObject obj = new JSONObject(response);
 
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
+if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
+JSONObject userJson = obj.getJSONObject("user");
 
                                 SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -325,11 +319,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     bundle.putString("status","principal");
                                                     testDialog.setArguments(bundle);
                                                     testDialog.show(getSupportFragmentManager(), "test dialog");
-//                                                    testDialog.dismiss();
-//                                                    testDialog.setCancelable(true);
-
-
-                                                }
+}
                                             })
                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                                 @Override
@@ -339,7 +329,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
                                                     startActivity(intent);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                                     finish();
                                                 }
                                             });
@@ -349,14 +339,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
                                     dialogEditor1.putBoolean(TEXT, false);
                                     dialogEditor1.apply();
-//                                     finishActivityAlert();
+
 
                                 }
                                 else{
                                     Intent intent = new Intent(LoginActivity.this, Principal_Activity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                     finish();
                                 }
 
@@ -401,15 +391,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     public void onResponse(String response) {
                         hideDialog();
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
+JSONObject obj = new JSONObject(response);
 
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
+if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
+JSONObject userJson = obj.getJSONObject("user");
 
                                 SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -437,11 +424,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     bundle.putString("status","teacher");
                                                     testDialog.setArguments(bundle);
                                                     testDialog.show(getSupportFragmentManager(), "test dialog");
-//                                                    testDialog.dismiss();
-//                                                    testDialog.setCancelable(true);
-
-
-                                                }
+}
                                             })
                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                                 @Override
@@ -451,7 +434,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
                                                     startActivity(intent);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                                     finish();
 
                                                 }
@@ -462,14 +445,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
                                     dialogEditor1.putBoolean(TEXT, false);
                                     dialogEditor1.apply();
-//                                     finishActivityAlert();
+
 
                                 }
                                 else{
                                     Intent intent = new Intent(LoginActivity.this, Teacher_Activity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                     finish();
 
                                 }
@@ -516,14 +499,11 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     public void onResponse(String response) {
                         hideDialog();
                         try {
-                            //converting response to json object
                             JSONObject obj = new JSONObject(response);
 
-                            //if no error in response
-                            if (!obj.getBoolean("error")) {
+                                if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                //getting the user from the response
                                 JSONObject userJson = obj.getJSONObject("user");
 
 
@@ -535,14 +515,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                 editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
 
-                                String UserName=userJson.getString("name");
-                                String UserClass = userJson.getString("class");
-                                String UserSection=userJson.getString("section");
-                                String UserSchool=userJson.getString("school");
-                                editor.putString("Name",UserName);
-                                editor.putString("Class",UserClass);
-                                editor.putString("Section",UserSection);
-                                editor.putString("School",UserSchool);
+                                String StudentName=userJson.getString("name");
+                                String StudentClass = userJson.getString("class");
+                                String StudentSection=userJson.getString("section");
+                                String StudentSchool=userJson.getString("school");
+                                editor.putString("name",StudentName);
+                                editor.putString("class",StudentClass);
+                                editor.putString("section",StudentSection);
+                                editor.putString("school",StudentSchool);
 
                                 editor.commit();
                                 editor.apply();
@@ -576,7 +556,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                     startActivity(intent);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                                     finish();
                                                 }
                                             });
@@ -586,14 +566,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                     SharedPreferences.Editor dialogEditor1 = dialogPreferences1.edit();
                                     dialogEditor1.putBoolean(TEXT, false);
                                     dialogEditor1.apply();
-//                                     finishActivityAlert();
+
 
                                 }
                                 else{
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
                                     finish();
                                 }
 
