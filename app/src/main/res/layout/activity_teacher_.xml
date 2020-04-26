@@ -5,35 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserHomePages.Teacher_Activity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <include
         layout="@layout/toolbar"
         android:id="@+id/teacher_tool"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"></include>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Teacher"
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webview_teacher"
+        android:layout_below="@+id/teacher_tool"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
-
-
-    <Button
-        android:id="@+id/teacher_logout"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@color/btn_logut_bg"
-        android:text="LOGOUT"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713"></Button>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/teacher_tool"></WebView>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

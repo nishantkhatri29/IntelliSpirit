@@ -7,7 +7,6 @@
     tools:context=".UserProfilePages.Profile_Principal">
 
     <include
-
         layout="@layout/profile_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"></include>

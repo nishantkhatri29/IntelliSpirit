@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private String username;
     private String password;
     private String DOB;
+    private String StudentName,StudentClass,StudentSection,StudentSchool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -292,8 +294,7 @@ if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
 JSONObject userJson = obj.getJSONObject("user");
-
-                                SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+   SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("isPrincipalLogIn", true);
                                 editor.putString("Username",username);
@@ -515,14 +516,15 @@ JSONObject userJson = obj.getJSONObject("user");
                                 editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
 
-                                String StudentName=userJson.getString("name");
-                                String StudentClass = userJson.getString("class");
-                                String StudentSection=userJson.getString("section");
-                                String StudentSchool=userJson.getString("school");
-                                editor.putString("name",StudentName);
-                                editor.putString("class",StudentClass);
-                                editor.putString("section",StudentSection);
-                                editor.putString("school",StudentSchool);
+                                 StudentName=userJson.getString("name");
+                                 StudentClass = userJson.getString("class");
+                                 StudentSection=userJson.getString("section");
+                                 StudentSchool=userJson.getString("school");
+                                 saveDataStudent();
+//                                editor.putString("name",StudentName);
+//                                editor.putString("class",StudentClass);
+//                                editor.putString("section",StudentSection);
+//                                editor.putString("school",StudentSchool);
 
                                 editor.commit();
                                 editor.apply();
@@ -600,6 +602,17 @@ JSONObject userJson = obj.getJSONObject("user");
                 params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
+//            }
+////
+////                @Override
+////                public Map<String, String> getHeaders() throws AuthFailureError {
+////                    Map<String, String> headers =  new HashMap<>();
+////                    headers.put("Content-Type", "application/json");
+////                    String credentials = username + ":" + password;
+////                    String encoded = "Basic "+ Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+////                    headers.put("Authorization", encoded);
+////                    return headers;
+
             }
         };
 
@@ -620,14 +633,25 @@ JSONObject userJson = obj.getJSONObject("user");
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         usertype=spinner.getSelectedItem().toString();
-
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    public void saveDataStudent(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("name",StudentName);
+        editor.putString("class",StudentClass);
+        editor.putString("section",StudentSection);
+        editor.putString("school",StudentSchool);
+        editor.commit();
+    }
+
+
 
 }
 

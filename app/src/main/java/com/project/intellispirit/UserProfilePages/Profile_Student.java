@@ -49,7 +49,7 @@ TextView textViewtool;
         });
 
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+
 
         String name=sharedPreferences.getString("name","");
         String Class=sharedPreferences.getString("class","");
