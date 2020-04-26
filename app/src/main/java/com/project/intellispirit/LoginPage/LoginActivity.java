@@ -60,6 +60,9 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private String password;
     private String DOB;
     private String StudentName,StudentClass,StudentSection,StudentSchool;
+    private String TeacherName,TeacherClass,TeacherSection,TeacherSchool;
+    private String PrincipalName,PrincipalClass,PrincipalSection,PrincipalSchool;
+    private String AdminName,AdminClass,AdminSection,AdminSchool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,14 +191,25 @@ if (!obj.getBoolean("error")) {
 
 JSONObject userJson = obj.getJSONObject("user");
 
-                                SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("isAdminLogIn", true);
-                                editor.putString("Username",username);
-                                editor.putString("DOB",DOB);
-                                editor.putString("Password",password);
-                                editor.commit();
-                                editor.apply();
+    SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean("isAdminLogIn", true);
+    editor.putString("Username",username);
+    editor.putString("DOB",DOB);
+    editor.putString("Password",password);
+
+    AdminName=userJson.getString("name");
+    AdminClass = userJson.getString("class");
+    AdminSection=userJson.getString("section");
+    AdminSchool=userJson.getString("school");
+
+    editor.putString("name",AdminName);
+    editor.putString("class",AdminClass);
+    editor.putString("section",AdminSection);
+    editor.putString("school",AdminSchool);
+
+    editor.commit();
+    editor.apply();
 
                                 testDialog.setCancelable(false);
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -294,17 +308,29 @@ if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
 JSONObject userJson = obj.getJSONObject("user");
-   SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("isPrincipalLogIn", true);
-                                editor.putString("Username",username);
-                                editor.putString("DOB",DOB);
-                                editor.putString("Password",password);
-                                editor.commit();
-                                editor.apply();
+    SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean("isPrincipalLogIn", true);
+    editor.putString("Username",username);
+    editor.putString("DOB",DOB);
+    editor.putString("Password",password);
+
+    PrincipalName=userJson.getString("name");
+    PrincipalClass = userJson.getString("class");
+    PrincipalSection=userJson.getString("section");
+    PrincipalSchool=userJson.getString("school");
+
+    editor.putString("name",PrincipalName);
+    editor.putString("class",PrincipalClass);
+    editor.putString("section",PrincipalSection);
+    editor.putString("school",PrincipalSchool);
+
+    editor.commit();
+    editor.apply();
 
 
-                                testDialog.setCancelable(false);
+
+    testDialog.setCancelable(false);
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
                                 SharedPreferences dialogPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -399,14 +425,25 @@ if (!obj.getBoolean("error")) {
 
 JSONObject userJson = obj.getJSONObject("user");
 
-                                SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("isTeacherLogIn", true);
-                                editor.putString("Username",username);
-                                editor.putString("DOB",DOB);
-                                editor.putString("Password",password);
-                                editor.commit();
-                                editor.apply();
+    SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean("isTeacherLogIn", true);
+    editor.putString("Username",username);
+    editor.putString("DOB",DOB);
+    editor.putString("Password",password);
+
+    TeacherName=userJson.getString("name");
+    TeacherClass = userJson.getString("class");
+    TeacherSection=userJson.getString("section");
+    TeacherSchool=userJson.getString("school");
+
+                              editor.putString("name",TeacherName);
+                                editor.putString("class",TeacherClass);
+                                editor.putString("section",TeacherSection);
+                                editor.putString("school",TeacherSchool);
+
+    editor.commit();
+    editor.apply();
 
 
                                 testDialog.setCancelable(false);

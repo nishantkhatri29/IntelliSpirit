@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,12 @@ public class Profile_Principal extends AppCompatActivity {
     TextView textViewtool;
     LinearLayout classLayout, sectionLayout;
     View classView, sectionView;
+
+    TextView name_principal;
+    TextView school_principal;
+    TextView class_principal;
+    TextView section_principal;
+    TextView DOB_principal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,12 @@ public class Profile_Principal extends AppCompatActivity {
         imageView_profile = findViewById(R.id.profile_image);
         imageView_profile.setVisibility(View.INVISIBLE);
 
+        name_principal=findViewById(R.id.tv_name);
+        school_principal=findViewById(R.id.tv_school);
+        class_principal=findViewById(R.id.tv_class);
+        section_principal=findViewById(R.id.tv_section);
+        DOB_principal=findViewById(R.id.tv_DOB);
+
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,5 +67,21 @@ public class Profile_Principal extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+
+
+        String name=sharedPreferences.getString("name","");
+        String Class=sharedPreferences.getString("class","");
+        String section=sharedPreferences.getString("section","");
+        String school=sharedPreferences.getString("school","");
+        String DOB=sharedPreferences.getString("DOB","");
+        name_principal.setText(name);
+        school_principal.setText(school);
+        class_principal.setText(Class);
+        section_principal.setText(section);
+        DOB_principal.setText(DOB);
+
+
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +20,13 @@ public class Profile_Teacher extends AppCompatActivity {
     TextView textViewtool;
     LinearLayout classLayout, sectionLayout;
     View classView, sectionView;
+
+    TextView name_teacher;
+    TextView school_teacher;
+    TextView class_teacher;
+    TextView section_teacher;
+    TextView DOB_teacher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,12 @@ public class Profile_Teacher extends AppCompatActivity {
         imageView_profile=findViewById(R.id.profile_image);
         imageView_profile.setVisibility(View.INVISIBLE);
 
+        name_teacher=findViewById(R.id.tv_name);
+        school_teacher=findViewById(R.id.tv_school);
+        class_teacher=findViewById(R.id.tv_class);
+        section_teacher=findViewById(R.id.tv_section);
+        DOB_teacher=findViewById(R.id.tv_DOB);
+
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +66,20 @@ public class Profile_Teacher extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+
+
+        String name=sharedPreferences.getString("name","");
+        String Class=sharedPreferences.getString("class","");
+        String section=sharedPreferences.getString("section","");
+        String school=sharedPreferences.getString("school","");
+        String DOB=sharedPreferences.getString("DOB","");
+        name_teacher.setText(name);
+        school_teacher.setText(school);
+        class_teacher.setText(Class);
+        section_teacher.setText(section);
+        DOB_teacher.setText(DOB);
 
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,13 @@ public class Profile_Admin extends AppCompatActivity {
     TextView textViewtool;
     LinearLayout classLayout, sectionLayout;
     View classView, sectionView;
+
+    TextView name_admin;
+    TextView school_admin;
+    TextView class_admin;
+    TextView section_admin;
+    TextView DOB_admin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,5 +63,19 @@ public class Profile_Admin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+
+
+        String name=sharedPreferences.getString("name","");
+        String Class=sharedPreferences.getString("class","");
+        String section=sharedPreferences.getString("section","");
+        String school=sharedPreferences.getString("school","");
+        String DOB=sharedPreferences.getString("DOB","");
+        name_admin.setText(name);
+        school_admin.setText(school);
+        class_admin.setText(Class);
+        section_admin.setText(section);
+        DOB_admin.setText(DOB);
     }
 }
