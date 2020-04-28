@@ -38,11 +38,7 @@ public class Profile_Teacher extends AppCompatActivity {
         classView =findViewById(R.id.divider4);
         sectionView =findViewById(R.id.divider5);
 
-        classLayout.setVisibility(View.GONE);
-        sectionLayout.setVisibility(View.GONE);
 
-        classView.setVisibility(View.GONE);
-        sectionView.setVisibility(View.GONE);
 
         toolbar = findViewById(R.id.mytool);
 

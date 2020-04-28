@@ -19,28 +19,33 @@ public class Profile_Admin extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_profile;
     TextView textViewtool;
-    LinearLayout classLayout, sectionLayout;
+    LinearLayout classLayout, sectionLayout,DOBLayout,schoolLayout;
     View classView, sectionView;
-
-    TextView name_admin;
-    TextView school_admin;
-    TextView class_admin;
-    TextView section_admin;
-    TextView DOB_admin;
+TextView tv_adminzoneid,tv_admindistricid;
+TextView zone_id,district_id;
+String zoneid,districtid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile__admin);
-
+        zone_id=findViewById(R.id.tvname);
+        DOBLayout=findViewById(R.id.layout_DOB);
+        district_id=findViewById(R.id.tvsection);
         classLayout = findViewById(R.id.layout_class);
         sectionLayout = findViewById(R.id.layout_section);
+        schoolLayout=findViewById(R.id.layout_school);
+        zone_id.setText("Zone ID");
+        district_id.setText("District ID");
+        tv_adminzoneid=findViewById(R.id.tv_name);
+        tv_admindistricid=findViewById(R.id.tv_section);
 
         classView = findViewById(R.id.divider4);
         sectionView = findViewById(R.id.divider5);
-
+        DOBLayout.setVisibility(View.GONE);
         classLayout.setVisibility(View.GONE);
         sectionLayout.setVisibility(View.GONE);
+        schoolLayout.setVisibility(View.GONE);
 
         classView.setVisibility(View.GONE);
         sectionView.setVisibility(View.GONE);
@@ -54,7 +59,6 @@ public class Profile_Admin extends AppCompatActivity {
         imageView_profile.setVisibility(View.INVISIBLE);
 
 
-
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,17 +69,12 @@ public class Profile_Admin extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        zoneid=sharedPreferences.getString("zoneid","");
+       // districtid=sharedPreferences.getString("districtid","");
+        tv_adminzoneid.setText(zoneid);
+        //tv_admindistricid.setText(districtid);
 
 
-        String name=sharedPreferences.getString("name","");
-        String Class=sharedPreferences.getString("class","");
-        String section=sharedPreferences.getString("section","");
-        String school=sharedPreferences.getString("school","");
-        String DOB=sharedPreferences.getString("DOB","");
-        name_admin.setText(name);
-        school_admin.setText(school);
-        class_admin.setText(Class);
-        section_admin.setText(section);
-        DOB_admin.setText(DOB);
+
     }
 }

@@ -72,14 +72,11 @@ public class Profile_Principal extends AppCompatActivity {
 
 
         String name=sharedPreferences.getString("name","");
-        String Class=sharedPreferences.getString("class","");
-        String section=sharedPreferences.getString("section","");
+
         String school=sharedPreferences.getString("school","");
         String DOB=sharedPreferences.getString("DOB","");
         name_principal.setText(name);
         school_principal.setText(school);
-        class_principal.setText(Class);
-        section_principal.setText(section);
         DOB_principal.setText(DOB);
 
 

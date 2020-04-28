@@ -60,9 +60,9 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private String password;
     private String DOB;
     private String StudentName,StudentClass,StudentSection,StudentSchool;
-    private String TeacherName,TeacherClass,TeacherSection,TeacherSchool;
-    private String PrincipalName,PrincipalClass,PrincipalSection,PrincipalSchool;
-    private String AdminName,AdminClass,AdminSection,AdminSchool;
+    private String TeacherName,TeacherClass,TeacherSection,TeacherSchool,TeacherSubject;
+    private String PrincipalName,PrincipalSchool;
+    private String Adminzoneid,Admindistrictid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,16 +197,10 @@ JSONObject userJson = obj.getJSONObject("user");
     editor.putString("Username",username);
     editor.putString("DOB",DOB);
     editor.putString("Password",password);
-
-    AdminName=userJson.getString("name");
-    AdminClass = userJson.getString("class");
-    AdminSection=userJson.getString("section");
-    AdminSchool=userJson.getString("school");
-
-    editor.putString("name",AdminName);
-    editor.putString("class",AdminClass);
-    editor.putString("section",AdminSection);
-    editor.putString("school",AdminSchool);
+    Adminzoneid=userJson.getString("zone_id");
+    Admindistrictid=userJson.getString("district_id");
+    editor.putString("zoneid",Adminzoneid);
+    editor.putString("districtid",Admindistrictid);
 
     editor.commit();
     editor.apply();
@@ -314,15 +308,9 @@ JSONObject userJson = obj.getJSONObject("user");
     editor.putString("Username",username);
     editor.putString("DOB",DOB);
     editor.putString("Password",password);
-
     PrincipalName=userJson.getString("name");
-    PrincipalClass = userJson.getString("class");
-    PrincipalSection=userJson.getString("section");
     PrincipalSchool=userJson.getString("school");
-
     editor.putString("name",PrincipalName);
-    editor.putString("class",PrincipalClass);
-    editor.putString("section",PrincipalSection);
     editor.putString("school",PrincipalSchool);
 
     editor.commit();
@@ -400,6 +388,7 @@ JSONObject userJson = obj.getJSONObject("user");
                 params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
+
             }
         };
 
@@ -436,11 +425,12 @@ JSONObject userJson = obj.getJSONObject("user");
     TeacherClass = userJson.getString("class");
     TeacherSection=userJson.getString("section");
     TeacherSchool=userJson.getString("school");
-
+    TeacherSubject=userJson.getString("subject");
                               editor.putString("name",TeacherName);
                                 editor.putString("class",TeacherClass);
                                 editor.putString("section",TeacherSection);
                                 editor.putString("school",TeacherSchool);
+                                editor.putString("subject",TeacherSubject);
 
     editor.commit();
     editor.apply();
@@ -687,7 +677,11 @@ JSONObject userJson = obj.getJSONObject("user");
         editor.putString("school",StudentSchool);
         editor.commit();
     }
+  public void saveDataTeacher(){
 
+
+
+  }
 
 
 }
