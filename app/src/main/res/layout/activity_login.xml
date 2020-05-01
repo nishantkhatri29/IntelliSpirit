@@ -53,14 +53,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/etUserName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.653" />
 
     <EditText
         android:id="@+id/etUserName"
@@ -71,24 +72,23 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/shapeusername"
         android:ems="10"
-        android:hint="user name"
-        android:paddingLeft="30dp"
+        android:hint="Username"
         android:inputType="number"
+        android:paddingLeft="30dp"
         android:textColor="@color/input_login"
         android:textColorHint="@color/input_login_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.236" />
 
     <EditText
         android:id="@+id/etUserDOB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="22dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/shapeusername"
         android:ems="10"
         android:hint="DOB(yyyy-mm-dd)"
@@ -106,10 +106,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/shapeusername"
         android:ems="10"
-        android:hint="password"
+        android:hint="Password"
         android:paddingLeft="30dp"
         android:inputType="textPassword"
         android:textColor="@color/input_login"
@@ -118,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserDOB" />
 
-     <androidx.appcompat.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/show_hide_pass"
         android:layout_width="30dp"
         android:layout_height="28dp"
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/shapespinner"
         android:entries="@array/UserTypes"
@@ -146,8 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.106" />
 
 
     <com.ebanx.swipebtn.SwipeButton

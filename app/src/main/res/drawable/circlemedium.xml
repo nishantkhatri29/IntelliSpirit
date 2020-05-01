@@ -11,7 +11,7 @@
         ></gradient>
 
     <size
-        android:height="76dp"
-        android:width="76dp"
+        android:height="100dp"
+        android:width="100dp"
         ></size>
 </shape>
