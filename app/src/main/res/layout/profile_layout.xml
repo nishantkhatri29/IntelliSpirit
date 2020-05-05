@@ -221,6 +221,15 @@
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
 
+        <Button
+            android:id="@+id/account_logout"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@color/btn_logut_bg"
+            android:text="LOGOUT"
+            android:layout_gravity="center"
+            android:textColor="@color/white"/>
+
 
     </LinearLayout>
 

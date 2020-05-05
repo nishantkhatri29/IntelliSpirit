@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.project.intellispirit.LoginPage.LoginActivity;
 import com.project.intellispirit.R;
 import com.project.intellispirit.UserHomePages.Admin_Activity;
 import com.project.intellispirit.UserHomePages.Teacher_Activity;
@@ -24,6 +26,7 @@ public class Profile_Admin extends AppCompatActivity {
 TextView tv_adminzoneid,tv_admindistricid;
 TextView zone_id,district_id;
 String zoneid,districtid;
+private Button admin_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,14 @@ String zoneid,districtid;
             }
         });
 
+        admin_logout=findViewById(R.id.account_logout);
+        admin_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
         zoneid=sharedPreferences.getString("zoneid","");
        districtid=sharedPreferences.getString("districtid","");
@@ -78,6 +89,18 @@ String zoneid,districtid;
         tv_admindistricid.setText(districtid);
 
 
+
+    }
+    public void logout() {
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
 
     }
 }

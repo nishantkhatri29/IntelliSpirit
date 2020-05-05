@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.project.intellispirit.LoginPage.LoginActivity;
 import com.project.intellispirit.R;
 import com.project.intellispirit.UserHomePages.Admin_Activity;
 import com.project.intellispirit.UserHomePages.Principal_Activity;
@@ -27,6 +29,7 @@ public class Profile_Principal extends AppCompatActivity {
     TextView class_principal;
     TextView section_principal;
     TextView DOB_principal;
+    private Button principal_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,14 @@ public class Profile_Principal extends AppCompatActivity {
             }
         });
 
+        principal_logout=findViewById(R.id.account_logout);
+        principal_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
 
 
@@ -79,6 +90,19 @@ public class Profile_Principal extends AppCompatActivity {
         school_principal.setText(school);
         DOB_principal.setText(DOB);
 
+
+    }
+
+    public void logout() {
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
 
     }
 }

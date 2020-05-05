@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.project.intellispirit.LoginPage.LoginActivity;
 import com.project.intellispirit.R;
 import com.project.intellispirit.UserHomePages.Teacher_Activity;
 
@@ -26,6 +28,7 @@ public class Profile_Teacher extends AppCompatActivity {
     TextView class_teacher;
     TextView section_teacher;
     TextView DOB_teacher;
+    private Button student_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,14 @@ public class Profile_Teacher extends AppCompatActivity {
             }
         });
 
+        student_logout=findViewById(R.id.account_logout);
+        student_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
 
 
@@ -76,6 +87,18 @@ public class Profile_Teacher extends AppCompatActivity {
         class_teacher.setText(Class);
         section_teacher.setText(section);
         DOB_teacher.setText(DOB);
+
+    }
+    public void logout() {
+        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
 
     }
 }
