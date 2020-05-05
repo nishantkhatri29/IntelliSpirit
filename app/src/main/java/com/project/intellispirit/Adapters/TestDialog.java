@@ -213,7 +213,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                   // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
@@ -279,7 +279,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Admin_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
 
 
@@ -346,7 +346,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Teacher_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
@@ -411,7 +411,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Principal_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
