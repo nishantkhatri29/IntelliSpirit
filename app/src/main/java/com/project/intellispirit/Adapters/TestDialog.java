@@ -1,6 +1,7 @@
 package com.project.intellispirit.Adapters;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,9 +24,11 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.project.intellispirit.Apis.URLs;
 import com.project.intellispirit.LoginPage.LoginActivity;
 import com.project.intellispirit.R;
@@ -38,6 +41,7 @@ import com.project.intellispirit.Volley.VolleySingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +70,6 @@ public class TestDialog extends AppCompatDialogFragment {
         final String status =bundle.getString("status","");
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.layout_dialog, null);
 
@@ -189,70 +192,65 @@ public class TestDialog extends AppCompatDialogFragment {
 
                 if (status == "student") {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LogIn", MODE_PRIVATE);
-                    final SharedPreferences.Editor editor = sharedPreferences.edit();
 
                     final String username = sharedPreferences.getString("Username", "");
                     final String dob = sharedPreferences.getString("DOB", "");
+                    final String jwt_token=sharedPreferences.getString("Token","");
 
                     final String password = setPassword.getText().toString().trim();
-                    Toast.makeText(getActivity(), password, Toast.LENGTH_LONG).show();
 
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
+                    RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
 
-                                    try {
-            JSONObject obj = new JSONObject(response);
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
-            if (!obj.getBoolean("error")) {
-                                            Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-            JSONObject userJson = obj.getJSONObject("user");
-                                        } else {
-                                            Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+                            try {
+                                JSONObject jsonObject=new JSONObject(response);
+
+                                if(!jsonObject.getBoolean("error")){
+                                    startActivity(new Intent(getActivity(),MainActivity.class));
+                                    Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                                else{
+                                    Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
-                            }) {
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(), ""+error, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }){
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<>();
-                            params.put("student_id", username);
+
+                            super.getParams();
+                            Map<String,String> params=new HashMap<>();
+                            params.put("student_id",username);
+                            params.put("password",password);
                             params.put("DOB",dob);
-                            params.put("password", password);
                             return params;
                         }
+
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            super.getHeaders();
+                            Map<String,String> headers=new HashMap<>();
+                            headers.put("Content-Type","application/x-www-form-urlencoded");
+                            headers.put("Authorization","Bearer "+jwt_token);
+                            return headers;
+                        }
                     };
-
-                    VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
-                    editor.putString("Password", password);
-                    editor.commit();
-                    editor.apply();
-
-
-                    dismiss();
-
-
-                    Intent intent = new Intent((LoginActivity) getActivity(), MainActivity.class);
-                    //Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.zoomin, R.anim.zoomout).toBundle();
-
-                    //startActivity(intent,bundle);
-                    startActivity(intent);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-
-
-
+                    requestQueue.add(stringRequest);
                 }
 
                 else if(status=="admin"){

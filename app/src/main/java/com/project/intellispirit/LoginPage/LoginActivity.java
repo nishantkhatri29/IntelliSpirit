@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private String TeacherName,TeacherClass,TeacherSection,TeacherSchool,TeacherSubject;
     private String PrincipalName,PrincipalSchool;
     private String Adminzoneid,Admindistrictid;
+    private String jwt_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -528,6 +529,7 @@ JSONObject userJson = obj.getJSONObject("user");
                         hideDialog();
                         try {
                             JSONObject obj = new JSONObject(response);
+                            jwt_token=obj.getString("jwt");
 
                                 if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -542,7 +544,7 @@ JSONObject userJson = obj.getJSONObject("user");
                                 editor.putString("Username",username);
                                 editor.putString("DOB",DOB);
                                 editor.putString("Password",password);
-
+                                editor.putString("Token",jwt_token);
                                  StudentName=userJson.getString("name");
                                  StudentClass = userJson.getString("class");
                                  StudentSection=userJson.getString("section");
@@ -637,12 +639,12 @@ JSONObject userJson = obj.getJSONObject("user");
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void showDialog() {
+    public void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
     }
 
-    private void hideDialog() {
+    public void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
