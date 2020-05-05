@@ -265,6 +265,7 @@ startActivity(intent);
                     jwt_token=sharedPreferences.getString("Token","");
 
                     password = setPassword.getText().toString().trim();
+                    Toast.makeText(getActivity(), ""+jwt_token, Toast.LENGTH_SHORT).show();
 
 
                     RequestQueue requestQueue= Volley.newRequestQueue(getActivity());

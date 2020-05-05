@@ -198,9 +198,10 @@ JSONObject userJson = obj.getJSONObject("user");
     SharedPreferences.Editor editor = sharedPreferences.edit();
     editor.putBoolean("isAdminLogIn", true);
     editor.putString("Username",username);
-    editor.putString("Token",jwt_token);
+
     editor.putString("DOB",DOB);
     editor.putString("Password",password);
+    editor.putString("Token",jwt_token);
     Adminzoneid=userJson.getString("zone_id");
     Admindistrictid=userJson.getString("district_id");
     editor.putString("zoneid",Adminzoneid);
