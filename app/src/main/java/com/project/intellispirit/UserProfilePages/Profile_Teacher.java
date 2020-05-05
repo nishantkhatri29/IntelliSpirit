@@ -38,35 +38,34 @@ public class Profile_Teacher extends AppCompatActivity {
         classLayout = findViewById(R.id.layout_class);
         sectionLayout = findViewById(R.id.layout_section);
 
-        classView =findViewById(R.id.divider4);
-        sectionView =findViewById(R.id.divider5);
-
+        classView = findViewById(R.id.divider4);
+        sectionView = findViewById(R.id.divider5);
 
 
         toolbar = findViewById(R.id.mytool);
 
-        textViewtool=findViewById(R.id.tv_tool);
+        textViewtool = findViewById(R.id.tv_tool);
         textViewtool.setText("Profile");
 
-        imageView_profile=findViewById(R.id.profile_image);
+        imageView_profile = findViewById(R.id.profile_image);
         imageView_profile.setVisibility(View.INVISIBLE);
 
-        name_teacher=findViewById(R.id.tv_name);
-        school_teacher=findViewById(R.id.tv_school);
-        class_teacher=findViewById(R.id.tv_class);
-        section_teacher=findViewById(R.id.tv_section);
-        DOB_teacher=findViewById(R.id.tv_DOB);
+        name_teacher = findViewById(R.id.tv_name);
+        school_teacher = findViewById(R.id.tv_school);
+        class_teacher = findViewById(R.id.tv_class);
+        section_teacher = findViewById(R.id.tv_section);
+        DOB_teacher = findViewById(R.id.tv_DOB);
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), Teacher_Activity.class);
+                Intent intent = new Intent(getApplicationContext(), Teacher_Activity.class);
                 startActivity(intent);
             }
         });
 
-        student_logout=findViewById(R.id.account_logout);
+        student_logout = findViewById(R.id.account_logout);
         student_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,14 +73,14 @@ public class Profile_Teacher extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
 
 
-        String name=sharedPreferences.getString("name","");
-        String Class=sharedPreferences.getString("class","");
-        String section=sharedPreferences.getString("section","");
-        String school=sharedPreferences.getString("school","");
-        String DOB=sharedPreferences.getString("DOB","");
+        String name = sharedPreferences.getString("name", "");
+        String Class = sharedPreferences.getString("class", "");
+        String section = sharedPreferences.getString("section", "");
+        String school = sharedPreferences.getString("school", "");
+        String DOB = sharedPreferences.getString("DOB", "");
         name_teacher.setText(name);
         school_teacher.setText(school);
         class_teacher.setText(Class);
@@ -89,9 +88,10 @@ public class Profile_Teacher extends AppCompatActivity {
         DOB_teacher.setText(DOB);
 
     }
+
     public void logout() {
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.clear();
         editor.commit();

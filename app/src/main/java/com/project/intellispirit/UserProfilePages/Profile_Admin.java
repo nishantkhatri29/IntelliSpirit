@@ -21,27 +21,27 @@ public class Profile_Admin extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_profile;
     TextView textViewtool;
-    LinearLayout classLayout, sectionLayout,DOBLayout,schoolLayout;
+    LinearLayout classLayout, sectionLayout, DOBLayout, schoolLayout;
     View classView, sectionView, schoolView;
-TextView tv_adminzoneid,tv_admindistricid;
-TextView zone_id,district_id;
-String zoneid,districtid;
-private Button admin_logout;
+    TextView tv_adminzoneid, tv_admindistricid;
+    TextView zone_id, district_id;
+    String zoneid, districtid;
+    private Button admin_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile__admin);
-        zone_id=findViewById(R.id.tvname);
-        DOBLayout=findViewById(R.id.layout_DOB);
-        district_id=findViewById(R.id.tvsection);
+        zone_id = findViewById(R.id.tvname);
+        DOBLayout = findViewById(R.id.layout_DOB);
+        district_id = findViewById(R.id.tvsection);
         classLayout = findViewById(R.id.layout_class);
         sectionLayout = findViewById(R.id.layout_section);
-        schoolLayout=findViewById(R.id.layout_school);
+        schoolLayout = findViewById(R.id.layout_school);
         zone_id.setText("Zone ID");
         district_id.setText("District ID");
-        tv_adminzoneid=findViewById(R.id.tv_name);
-        tv_admindistricid=findViewById(R.id.tv_section);
+        tv_adminzoneid = findViewById(R.id.tv_name);
+        tv_admindistricid = findViewById(R.id.tv_section);
 
         schoolView = findViewById(R.id.divider3);
         classView = findViewById(R.id.divider4);
@@ -58,10 +58,10 @@ private Button admin_logout;
 
         toolbar = findViewById(R.id.mytool);
 
-        textViewtool=findViewById(R.id.tv_tool);
+        textViewtool = findViewById(R.id.tv_tool);
         textViewtool.setText("Profile");
 
-        imageView_profile=findViewById(R.id.profile_image);
+        imageView_profile = findViewById(R.id.profile_image);
         imageView_profile.setVisibility(View.INVISIBLE);
 
 
@@ -69,31 +69,33 @@ private Button admin_logout;
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), Admin_Activity.class);
+                Intent intent = new Intent(getApplicationContext(), Admin_Activity.class);
                 startActivity(intent);
             }
         });
 
-        admin_logout=findViewById(R.id.account_logout);
+        admin_logout = findViewById(R.id.account_logout);
         admin_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logout();
+
+
             }
         });
 
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        zoneid=sharedPreferences.getString("zoneid","");
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        zoneid = sharedPreferences.getString("zoneid", "");
 //       districtid=sharedPreferences.getString("districtid","");
         tv_adminzoneid.setText(zoneid);
 //        tv_admindistricid.setText(districtid);
 
 
-
     }
+
     public void logout() {
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.clear();
         editor.commit();

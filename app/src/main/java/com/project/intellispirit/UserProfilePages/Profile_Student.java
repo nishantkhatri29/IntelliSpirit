@@ -17,8 +17,8 @@ import com.project.intellispirit.UserHomePages.MainActivity;
 
 public class Profile_Student extends AppCompatActivity {
     Toolbar toolbar;
-ImageView imageView_profile;
-TextView textViewtool;
+    ImageView imageView_profile;
+    TextView textViewtool;
 
     TextView name_student;
     TextView school_student;
@@ -31,27 +31,27 @@ TextView textViewtool;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile__student);
-        imageView_profile=findViewById(R.id.profile_image);
-        textViewtool=findViewById(R.id.tv_tool);
+        imageView_profile = findViewById(R.id.profile_image);
+        textViewtool = findViewById(R.id.tv_tool);
         textViewtool.setText("Profile");
-         imageView_profile.setVisibility(View.INVISIBLE);
-        toolbar=findViewById(R.id.mytool);
+        imageView_profile.setVisibility(View.INVISIBLE);
+        toolbar = findViewById(R.id.mytool);
 
-        name_student=findViewById(R.id.tv_name);
-        school_student=findViewById(R.id.tv_school);
-        class_student=findViewById(R.id.tv_class);
-        section_student=findViewById(R.id.tv_section);
-        DOB_student=findViewById(R.id.tv_DOB);
+        name_student = findViewById(R.id.tv_name);
+        school_student = findViewById(R.id.tv_school);
+        class_student = findViewById(R.id.tv_class);
+        section_student = findViewById(R.id.tv_section);
+        DOB_student = findViewById(R.id.tv_DOB);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Profile_Student.this, MainActivity.class);
+                Intent intent = new Intent(Profile_Student.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        studentLogout=findViewById(R.id.account_logout);
+        studentLogout = findViewById(R.id.account_logout);
         studentLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,14 +59,14 @@ TextView textViewtool;
             }
         });
 
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
 
 
-        String name=sharedPreferences.getString("name","");
-        String Class=sharedPreferences.getString("class","");
-        String section=sharedPreferences.getString("section","");
-        String school=sharedPreferences.getString("school","");
-        String DOB=sharedPreferences.getString("DOB","");
+        String name = sharedPreferences.getString("name", "");
+        String Class = sharedPreferences.getString("class", "");
+        String section = sharedPreferences.getString("section", "");
+        String school = sharedPreferences.getString("school", "");
+        String DOB = sharedPreferences.getString("DOB", "");
         name_student.setText(name);
         school_student.setText(school);
         class_student.setText(Class);
@@ -74,9 +74,10 @@ TextView textViewtool;
         DOB_student.setText(DOB);
 
     }
+
     public void logout() {
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.clear();
         editor.commit();

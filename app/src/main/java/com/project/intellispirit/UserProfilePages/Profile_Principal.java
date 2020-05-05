@@ -56,11 +56,11 @@ public class Profile_Principal extends AppCompatActivity {
         imageView_profile = findViewById(R.id.profile_image);
         imageView_profile.setVisibility(View.INVISIBLE);
 
-        name_principal=findViewById(R.id.tv_name);
-        school_principal=findViewById(R.id.tv_school);
-        class_principal=findViewById(R.id.tv_class);
-        section_principal=findViewById(R.id.tv_section);
-        DOB_principal=findViewById(R.id.tv_DOB);
+        name_principal = findViewById(R.id.tv_name);
+        school_principal = findViewById(R.id.tv_school);
+        class_principal = findViewById(R.id.tv_class);
+        section_principal = findViewById(R.id.tv_section);
+        DOB_principal = findViewById(R.id.tv_DOB);
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -71,7 +71,7 @@ public class Profile_Principal extends AppCompatActivity {
             }
         });
 
-        principal_logout=findViewById(R.id.account_logout);
+        principal_logout = findViewById(R.id.account_logout);
         principal_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,13 +79,13 @@ public class Profile_Principal extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
 
 
-        String name=sharedPreferences.getString("name","");
+        String name = sharedPreferences.getString("name", "");
 
-        String school=sharedPreferences.getString("school","");
-        String DOB=sharedPreferences.getString("DOB","");
+        String school = sharedPreferences.getString("school", "");
+        String DOB = sharedPreferences.getString("DOB", "");
         name_principal.setText(name);
         school_principal.setText(school);
         DOB_principal.setText(DOB);
@@ -94,8 +94,8 @@ public class Profile_Principal extends AppCompatActivity {
     }
 
     public void logout() {
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.clear();
         editor.commit();
