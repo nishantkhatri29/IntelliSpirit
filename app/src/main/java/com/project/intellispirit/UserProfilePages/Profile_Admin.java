@@ -84,9 +84,9 @@ private Button admin_logout;
 
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
         zoneid=sharedPreferences.getString("zoneid","");
-       districtid=sharedPreferences.getString("districtid","");
+//       districtid=sharedPreferences.getString("districtid","");
         tv_adminzoneid.setText(zoneid);
-        tv_admindistricid.setText(districtid);
+//        tv_admindistricid.setText(districtid);
 
 
 

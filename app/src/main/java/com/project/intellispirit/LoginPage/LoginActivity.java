@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         hideDialog();
                         try {
 JSONObject obj = new JSONObject(response);
-                            jwt_token=obj.getString("jwt");
+                         jwt_token=obj.getString("jwt");
 
 
 if (!obj.getBoolean("error")) {
@@ -203,9 +203,9 @@ JSONObject userJson = obj.getJSONObject("user");
     editor.putString("Password",password);
     editor.putString("Token",jwt_token);
     Adminzoneid=userJson.getString("zone_id");
-    Admindistrictid=userJson.getString("district_id");
+//    Admindistrictid=userJson.getString("district_id");
     editor.putString("zoneid",Adminzoneid);
-    editor.putString("districtid",Admindistrictid);
+//    editor.putString("districtid",Admindistrictid);
 
     editor.commit();
     editor.apply();
