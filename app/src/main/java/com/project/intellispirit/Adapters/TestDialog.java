@@ -199,6 +199,7 @@ public class TestDialog extends AppCompatDialogFragment {
                      jwt_token=sharedPreferences.getString("Token","");
 
                      password = setPassword.getText().toString().trim();
+                    Toast.makeText(getActivity(), ""+jwt_token, Toast.LENGTH_SHORT).show();
 
 
                     RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
@@ -213,8 +214,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
                                 else{
@@ -265,11 +265,11 @@ public class TestDialog extends AppCompatDialogFragment {
                     jwt_token=sharedPreferences.getString("Token","");
 
                     password = setPassword.getText().toString().trim();
-
+                    Toast.makeText(getActivity(), ""+jwt_token, Toast.LENGTH_SHORT).show();
 
                     RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
 
-                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD, new Response.Listener<String>() {
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATEADMINPASSWORD, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
@@ -279,8 +279,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Admin_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+startActivity(intent);
 
 
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -332,11 +331,12 @@ public class TestDialog extends AppCompatDialogFragment {
                     jwt_token=sharedPreferences.getString("Token","");
 
                     password = setPassword.getText().toString().trim();
+                    Toast.makeText(getActivity(), ""+jwt_token, Toast.LENGTH_SHORT).show();
 
 
                     RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
 
-                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD, new Response.Listener<String>() {
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATETEACHERPASSWORD, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
@@ -346,8 +346,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Teacher_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
                                 else{
@@ -397,11 +396,11 @@ public class TestDialog extends AppCompatDialogFragment {
                     jwt_token=sharedPreferences.getString("Token","");
 
                     password = setPassword.getText().toString().trim();
-
+                    Toast.makeText(getActivity(), ""+jwt_token, Toast.LENGTH_SHORT).show();
 
                     RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
 
-                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATESTUDENTPASSWORD, new Response.Listener<String>() {
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, URLs.URL_UPDATEPRINCIPALPASSWORD, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
@@ -411,8 +410,7 @@ public class TestDialog extends AppCompatDialogFragment {
 
                                 if(!jsonObject.getBoolean("error")){
                                     Intent intent=new Intent(getActivity(),Principal_Activity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+startActivity(intent);
                                     Toast.makeText(getActivity(), ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
                                 else{
