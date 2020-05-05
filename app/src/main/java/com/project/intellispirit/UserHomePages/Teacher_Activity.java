@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -62,6 +63,8 @@ public class Teacher_Activity extends AppCompatActivity {
 
         });
         webView_teacher.getSettings().setJavaScriptEnabled(true);
+        webView_teacher.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
 
         webView_teacher.loadUrl("https://intellispirit0.herokuapp.com/"+teacher_id);
 

@@ -629,16 +629,7 @@ JSONObject userJson = obj.getJSONObject("user");
                 params.put("DOB",DOB);
                 params.put("password", password);
                 return params;
-//            }
-////
-////                @Override
-////                public Map<String, String> getHeaders() throws AuthFailureError {
-////                    Map<String, String> headers =  new HashMap<>();
-////                    headers.put("Content-Type", "application/json");
-////                    String credentials = username + ":" + password;
-////                    String encoded = "Basic "+ Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-////                    headers.put("Authorization", encoded);
-////                    return headers;
+
 
             }
         };
@@ -677,13 +668,12 @@ JSONObject userJson = obj.getJSONObject("user");
         editor.putString("school",StudentSchool);
         editor.commit();
     }
-  public void saveDataTeacher(){
 
-
-
-  }
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
 
 

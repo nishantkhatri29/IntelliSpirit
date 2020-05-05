@@ -393,7 +393,7 @@ public class TestDialog extends AppCompatDialogFragment {
                     final String dob = sharedPreferences.getString("DOB", "");
 
                     final String password = setPassword.getText().toString().trim();
-                    Toast.makeText(getActivity(), password, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getActivity(), password, Toast.LENGTH_LONG).show();
 
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_UPDATEPRINCIPALPASSWORD,
