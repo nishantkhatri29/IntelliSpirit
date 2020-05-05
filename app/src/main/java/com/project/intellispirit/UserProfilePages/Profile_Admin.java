@@ -20,7 +20,7 @@ public class Profile_Admin extends AppCompatActivity {
     ImageView imageView_profile;
     TextView textViewtool;
     LinearLayout classLayout, sectionLayout,DOBLayout,schoolLayout;
-    View classView, sectionView;
+    View classView, sectionView, schoolView;
 TextView tv_adminzoneid,tv_admindistricid;
 TextView zone_id,district_id;
 String zoneid,districtid;
@@ -40,13 +40,16 @@ String zoneid,districtid;
         tv_adminzoneid=findViewById(R.id.tv_name);
         tv_admindistricid=findViewById(R.id.tv_section);
 
+        schoolView = findViewById(R.id.divider3);
         classView = findViewById(R.id.divider4);
-        sectionView = findViewById(R.id.divider5);
+        sectionView = findViewById(R.id.divider6);
+
         DOBLayout.setVisibility(View.GONE);
         classLayout.setVisibility(View.GONE);
-        sectionLayout.setVisibility(View.GONE);
+        sectionLayout.setVisibility(View.VISIBLE);
         schoolLayout.setVisibility(View.GONE);
 
+        schoolView.setVisibility(View.GONE);
         classView.setVisibility(View.GONE);
         sectionView.setVisibility(View.GONE);
 
@@ -70,9 +73,9 @@ String zoneid,districtid;
 
         SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
         zoneid=sharedPreferences.getString("zoneid","");
-       // districtid=sharedPreferences.getString("districtid","");
+       districtid=sharedPreferences.getString("districtid","");
         tv_adminzoneid.setText(zoneid);
-        //tv_admindistricid.setText(districtid);
+        tv_admindistricid.setText(districtid);
 
 
 

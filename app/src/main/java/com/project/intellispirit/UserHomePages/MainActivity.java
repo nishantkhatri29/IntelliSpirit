@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new StudentTermAdapter(itemList);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,4));
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new StudentTermAdapter.OnItemClickListener() {

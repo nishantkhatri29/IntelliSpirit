@@ -36,7 +36,7 @@ public class Term1SubjectFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new Term1Subject1ItemAdapter(itemList);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new Term1Subject1ItemAdapter.OnSubjectItemClickListener() {
