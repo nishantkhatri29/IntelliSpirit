@@ -18,7 +18,7 @@ import com.project.intellispirit.UserProfilePages.Profile_Teacher;
 public class Admin_Activity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_profile;
-    private Button adminLogoutButton;
+   // private Button adminLogoutButton;
 
 
     @Override
@@ -36,14 +36,14 @@ public class Admin_Activity extends AppCompatActivity {
             }
         });
 
-        adminLogoutButton=findViewById(R.id.admin_logout);
+        //adminLogoutButton=findViewById(R.id.admin_logout);
 
-        adminLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+//        adminLogoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logout();
+//            }
+//        });
     }
 
     @Override
