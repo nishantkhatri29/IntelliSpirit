@@ -19,7 +19,7 @@ import com.project.intellispirit.UserProfilePages.Profile_Teacher;
 public class Principal_Activity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_profile;
-    private Button principalLogoutButton;
+//    private Button principalLogoutButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +37,14 @@ public class Principal_Activity extends AppCompatActivity {
         });
 
 
-        principalLogoutButton=findViewById(R.id.principal_logout);
-
-        principalLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+//        principalLogoutButton=findViewById(R.id.principal_logout);
+//
+//        principalLogoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logout();
+//            }
+//        });
     }
 
     @Override
