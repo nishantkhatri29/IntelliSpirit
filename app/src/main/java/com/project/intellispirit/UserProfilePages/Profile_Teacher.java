@@ -92,11 +92,9 @@ public class Profile_Teacher extends AppCompatActivity {
     public void logout() {
         SharedPreferences sharedPreferences = getSharedPreferences("LogIn", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.clear();
         editor.commit();
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
 
