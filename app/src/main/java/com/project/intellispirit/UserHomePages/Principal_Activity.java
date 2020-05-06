@@ -19,7 +19,6 @@ import com.project.intellispirit.UserProfilePages.Profile_Teacher;
 public class Principal_Activity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_profile;
-//    private Button principalLogoutButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +36,6 @@ public class Principal_Activity extends AppCompatActivity {
         });
 
 
-//        principalLogoutButton=findViewById(R.id.principal_logout);
-//
-//        principalLogoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logout();
-//            }
-//        });
     }
 
     @Override
@@ -53,15 +44,5 @@ public class Principal_Activity extends AppCompatActivity {
         finishAffinity();
     }
 
-    public void logout() {
-        SharedPreferences sharedPreferences=getSharedPreferences("LogIn",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
 
-        editor.clear();
-        editor.commit();
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
 }
