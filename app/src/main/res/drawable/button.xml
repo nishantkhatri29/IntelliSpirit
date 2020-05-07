@@ -4,17 +4,17 @@
 
 
     <corners
-        android:radius="100dp"
+        android:radius="12dp"
         ></corners>
 
     <size
         android:height="53dp"
-        android:width="170dp"
+        android:width="150dp"
         ></size>
 
     <gradient
-        android:startColor="#25aae1"
-        android:endColor="#a4cd3b"
+        android:startColor="#fff"
+        android:endColor="#fff"
         ></gradient>
 
 </shape>

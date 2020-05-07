@@ -5,63 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginPage.LoginActivity"
+    android:background="@drawable/circlemedium"
     >
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/circlemedium"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="190dp"
+        android:layout_height="170dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/logosmallsize"
+        app:civ_border_color="#25aae1"
+        app:civ_border_width="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/etUserName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.appcompat.widget.AppCompatImageView>
-
-
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circlemain"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.381">
+        android:elevation="11dp"
+        />
 
-    </androidx.appcompat.widget.AppCompatImageView>
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:src="@drawable/circlemedium"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="120dp"
-        android:src="@drawable/circlemsmall"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <!--    </androidx.appcompat.widget.AppCompatImageView>-->
 
-    </androidx.appcompat.widget.AppCompatImageView>
+
+    <!--&lt;!&ndash;    </androidx.appcompat.widget.AppCompatImageView>&ndash;&gt;-->
+
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:id="@+id/appCompatImageView2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="90dp"-->
+    <!--        android:layout_marginTop="120dp"-->
+    <!--        android:src="@drawable/circlemsmall"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--    </androidx.appcompat.widget.AppCompatImageView>-->
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/poppinsregular"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="8dp"
+        android:fontFamily="cursive"
         android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="35dp"
+        android:textSize="51sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/etUserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="555dp"
+        android:layout_height="588dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circlemain"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="7dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.356" />
 
     <EditText
         android:id="@+id/etUserName"
@@ -70,6 +90,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="8dp"
+        android:elevation="9dp"
         android:background="@drawable/shapeusername"
         android:ems="10"
         android:hint="Username"
@@ -81,14 +102,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.236"
+        />
 
     <EditText
         android:id="@+id/etUserDOB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="19dp"
+        android:elevation="9dp"
         android:background="@drawable/shapeusername"
         android:ems="10"
         android:hint="DOB(yyyy-mm-dd)"
@@ -106,11 +129,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="19dp"
         android:background="@drawable/shapeusername"
-        android:ems="10"
-        android:hint="Password"
+        android:ems="9"
+        android:hint="password"
         android:paddingLeft="30dp"
+        android:elevation="10dp"
         android:inputType="textPassword"
         android:textColor="@color/input_login"
         android:textColorHint="@color/input_login_hint"
@@ -136,6 +160,7 @@
         android:id="@+id/spinner_users"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="9dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="29dp"
@@ -148,26 +173,26 @@
         app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
         app:layout_constraintVertical_bias="0.106" />
 
-
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="344dp"
+        android:layout_height="81dp"
         android:background="@drawable/button"
+        android:elevation="16dp"
         app:button_bottom_padding="20dp"
-        app:button_left_padding="30dp"
-        app:button_right_padding="30dp"
-        app:inner_text="Swipe to Login"
-        app:inner_text_size="20dp"
-        app:inner_text_left_padding="15dp"
-        app:button_top_padding="20dp"
         app:button_image_disabled="@drawable/ic_lock_open_black_24dp"
         app:button_image_enabled="@drawable/ic_lock_black_24dp"
+        app:button_left_padding="30dp"
+        app:button_right_padding="30dp"
+        app:button_top_padding="20dp"
+        app:inner_text="Swipe to Login"
+        app:inner_text_color="@color/white"
+        app:inner_text_left_padding="15dp"
+        app:inner_text_size="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
-        app:layout_constraintVertical_bias="0.809"></com.ebanx.swipebtn.SwipeButton>
+        app:layout_constraintVertical_bias="0.379"></com.ebanx.swipebtn.SwipeButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
