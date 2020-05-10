@@ -153,7 +153,8 @@
         android:src="@drawable/ic_remove_red_eye_black_24dp"
         android:text="Show Password"
         app:layout_constraintBottom_toBottomOf="@+id/etUserPassword"
-        app:layout_constraintEnd_toEndOf="@+id/etUserPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/etUserPassword"
+        android:elevation="10dp"/>
 
 
     <Spinner
