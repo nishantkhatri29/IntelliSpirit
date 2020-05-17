@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private ImageView show_hide_password;
     final TestDialog testDialog = new TestDialog();
 
+    //Test Git Auth Token
+
 
     Spinner spinner;
     String usertype;
